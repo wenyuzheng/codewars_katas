@@ -11,15 +11,10 @@ def shift_letters(string,n)
   chars.map {|char| letters.include?(char) ? shift_letter(char,n) : char}.join
 end
 
-p shift_letters("aZ !2By 5",2) == "cB !2Da 5"
-
 def trans_digits(string)
   string.split("").map {|char| ("0".."9").to_a.include?(char) ?
     (9 - char.to_i).to_s : char}.join
 end
-
-p trans_digits('a2s Df9') == 'a7s Df0'
-p trans_digits('T3s! wE5a') == 'T6s! wE4a'
 
 def odd_even_letter_transform(string)
   chars = string.split("")
