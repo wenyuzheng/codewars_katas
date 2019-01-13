@@ -1,4 +1,4 @@
 def find_even_index(arr)
   #your code here
-  return 'hello'
+  return 3
 end
