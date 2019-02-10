@@ -1,6 +1,6 @@
 def order(words)
   numbers = (1..9).to_a
-  words.split(" ").map
+  words.split(" ").sort
 end
 
 
