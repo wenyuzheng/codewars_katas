@@ -1,6 +1,5 @@
 def order(words)
-  numbers = (1..9).to_a
-  words.split(" ").sort
+  words.split(" ").sort_by{|word| word.chars.min}.join(" ")
 end
 
 
