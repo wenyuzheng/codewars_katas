@@ -5,7 +5,7 @@ def pattern(n)
   else
    numbers = (1..n).to_a
    result << numbers.join
-
+   numbers.rotate
   end
 end
 
