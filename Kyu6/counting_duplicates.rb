@@ -5,6 +5,6 @@ end
 
 
 
-p duplicate_count("aAbcd")
-p duplicate_count("Indivisibilities")
-p duplicate_count("abcdeaB")
+# p duplicate_count("aAbcd")
+# p duplicate_count("Indivisibilities")
+# p duplicate_count("abcdeaB")
