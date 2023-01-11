@@ -1,14 +1,13 @@
 function solution(input, markers) {
-  return input.substring(0, input.indexOf(markers[0]));
+  const inputLines = input.split("\n");
+  const results = [];
+
+  for (let i = 0; i < inputLines.length; i++) {
+    results.push(inputLines[i].substring(0, input.indexOf(markers[0])));
+  }
+
+  return results.join("\n");
 }
 
-console.log(solution("test!delete me", ["!"])); // test
-
-// checkComments(
-//   "apples, plums % and bananas\npears\noranges !applesauce",
-//   ["%", "!"],
-//   "apples, plums\npears\noranges"
-// );
-// checkComments("Q @b\nu\ne -e f g", ["@", "-"], "Q\nu\ne");
-
-// console.log("apples, plums % and bananas\npears\noranges !applesauce");
+console.log([solution("test!delete me", ["!"])]); // test
+console.log([solution("test1!delete me\ntest2!delete me", ["!"])]); // test1\ntest2
