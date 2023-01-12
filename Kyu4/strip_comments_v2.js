@@ -1,21 +1,13 @@
 function solution(input, markers) {
-  const inputLines = input.split("\n");
   const results = [];
 
-  for (let i = 0; i < inputLines.length; i++) {
-    let markerIndex = 0;
-    let subLine = inputLines[i];
-
+  input.split("\n").map((line) => {
     for (let j = 0; j < markers.length; j++) {
-      markerIndex = inputLines[i].indexOf(markers[j]);
-
-      if (markerIndex === -1) {
-        markerIndex = inputLines[i].length;
-      }
-      subLine = subLine.substring(0, markerIndex);
+      let markerIndex = line.indexOf(markers[j]);
+      line = markerIndex === -1 ? line : line.substring(0, markerIndex);
     }
-    results.push(subLine.trim());
-  }
+    results.push(line.trim());
+  });
 
   return results.join("\n");
 }
