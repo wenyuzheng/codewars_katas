@@ -2,17 +2,20 @@ function solution(input, markers) {
   const inputLines = input.split("\n");
   const results = [];
 
-  // console.log({ inputLines });
-
   for (let i = 0; i < inputLines.length; i++) {
-    let markerIndex = inputLines[i].indexOf(markers[0]);
-    if (markerIndex === -1) {
-      markerIndex = inputLines[i].length;
-    }
-    results.push(inputLines[i].substring(0, markerIndex).trim());
-  }
+    let markerIndex = 0;
+    let subLine = inputLines[i];
 
-  // console.log({ results });
+    for (let j = 0; j < markers.length; j++) {
+      markerIndex = inputLines[i].indexOf(markers[j]);
+
+      if (markerIndex === -1) {
+        markerIndex = inputLines[i].length;
+      }
+      subLine = subLine.substring(0, markerIndex);
+    }
+    results.push(subLine.trim());
+  }
 
   return results.join("\n");
 }
@@ -26,3 +29,7 @@ console.log(
   solution("tes   !delete me  \ntest2!delete me", ["!"]) === "tes\ntest2"
 ); // tes\ntest2
 console.log(solution("tes     \ntest2!delete me", ["!"]) === "tes\ntest2"); // tes\ntest2
+console.log(
+  solution("tes     \ntest2!delete me\nbefore%something", ["!", "%"]) ===
+    "tes\ntest2\nbefore"
+); // "tes\ntest2\nbefore"
