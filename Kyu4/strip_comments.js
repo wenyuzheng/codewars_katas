@@ -1,44 +1,27 @@
 function solution(input, markers) {
-  let indexes = [];
+  const results = [];
 
-  for (let i = markers.length - 1; i >= 0; i--) {
-    var marker = markers[i];
-    console.log({ marker });
-    indexes.add(input.indexOf(marker));
-
-    let end = input.indexOf(marker);
-
-    for (let j = input.indexOf(marker) + 1; j < input.length; j++) {
-      var c = input.charAt(j);
-      if (c.toLowerCase() == c.toUpperCase() && c != " ") {
-        end = j;
-        break;
-      }
+  input.split("\n").map((line) => {
+    for (let j = 0; j < markers.length; j++) {
+      let markerIndex = line.indexOf(markers[j]);
+      line = markerIndex === -1 ? line : line.substring(0, markerIndex);
     }
+    results.push(line.trim());
+  });
 
-    indexes.add(end);
-
-    var test1 = input.substring(0, input.indexOf(marker));
-    var test2 = input.substring(end, input.length);
-
-    console.log({ test1 });
-    console.log({ test2 });
-  }
-
-  //     input = input.substring(0, input.indexOf(marker));
-  //     console.log({input});
-
-  //     var test = input.substring(input.indexOf(marker), end);
-  //     console.log({test});
-
-  return input.trim();
+  return results.join("\n");
 }
 
-// checkComments(
-//   "apples, plums % and bananas\npears\noranges !applesauce",
-//   ["%", "!"],
-//   "apples, plums\npears\noranges"
-// );
-// checkComments("Q @b\nu\ne -e f g", ["@", "-"], "Q\nu\ne");
-
-console.log("apples, plums % and bananas\npears\noranges !applesauce");
+console.log(solution("test!delete me", ["!"]) === "test"); // test
+console.log(
+  solution("test1!delete me\ntest2!delete me", ["!"]) === "test1\ntest2"
+); // test1\ntest2
+console.log(solution("tes!delete me\ntest2!delete me", ["!"]) === "tes\ntest2"); // tes\ntest2
+console.log(
+  solution("tes   !delete me  \ntest2!delete me", ["!"]) === "tes\ntest2"
+); // tes\ntest2
+console.log(solution("tes     \ntest2!delete me", ["!"]) === "tes\ntest2"); // tes\ntest2
+console.log(
+  solution("tes     \ntest2!delete me\nbefore%something", ["!", "%"]) ===
+    "tes\ntest2\nbefore"
+); // "tes\ntest2\nbefore"
