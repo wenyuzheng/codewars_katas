@@ -1,13 +1,14 @@
 function productFib(prod) {
-  // Fib(n) * Fib(n+1)
-
   let n = 0;
+  let n1 = 1;
 
-  while (Fib(n) * Fib(n + 1) <= prod) {
+  while (n * n1 < prod) {
     if (Fib(n) * Fib(n + 1) === prod) {
       return [Fib(n), Fib(n + 1), true];
     }
-    n++;
+    n1 = n1;
+
+    n = n1;
   }
 
   return [Fib(n), Fib(n + 1), false];
