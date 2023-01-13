@@ -4,12 +4,21 @@ function convertFrac(lst) {
   }
 
   lst = lst.map((e) => {
+    if (Math.floor(e[0]) !== e[0]) {
+      const decimalsNum = e[0].toString().split(".")[1].length;
+
+      return [e[0] * 10 * decimalsNum, e[1] * 10 * decimalsNum];
+    } else return e;
+  });
+
+  // Simplify
+  lst = lst.map((e) => {
     const diff = gcd(e[0], e[1]);
     return [e[0] / diff, e[1] / diff];
   });
 
+  // Get common denominator
   let denominator = lst[0][0];
-
   for (let i = 0; i < lst.length - 1; i++) {
     const next = lst[i + 1];
     denominator = lcm(lst[i][1], next[1]);
@@ -65,18 +74,18 @@ function lcm(a, b) {
 //     [1, 4],
 //   ]) === "(8,12)(4,12)(3,12)"
 // ); // (8,12)(4,12)(3,12)
-console.log(
-  convertFrac([
-    [2, 4],
-    [2, 6],
-    [2, 8],
-  ])
-); // (6,12)(4,12)(3,12)
-
 // console.log(
 //   convertFrac([
-//     [1390.6153846153845, 2620],
-//     [174, 2620],
-//     [1965, 2620],
+//     [2, 4],
+//     [2, 6],
+//     [2, 8],
 //   ])
-// ); // (18078,34060)(2262,34060)(25545,34060)
+// ); // (6,12)(4,12)(3,12)
+
+console.log(
+  convertFrac([
+    [1390.6153846153845, 2620],
+    [174, 2620],
+    [1965, 2620],
+  ])
+); // (18078,34060)(2262,34060)(25545,34060)
