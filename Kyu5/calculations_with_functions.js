@@ -1,40 +1,20 @@
-const numberFuncGen = (n) => {
-  return (str) => {
-    if (str === undefined) {
-      return n;
-    }
-    if (str[0] === "+") {
-      return n + Number(str[1]);
-    }
-    if (str[0] === "*") {
-      return n * Number(str[1]);
-    }
-    if (str[0] === "-") {
-      return n - Number(str[1]);
-    }
-    if (str[0] === "/") {
-      return Math.floor(n / Number(str[1]));
-    }
-  };
-};
+const numGen = (num) => (a) => a ? a(num) : num;
 
-const zero = numberFuncGen(0);
-const one = numberFuncGen(1);
-const two = numberFuncGen(2);
-const three = numberFuncGen(3);
-const four = numberFuncGen(4);
-const five = numberFuncGen(5);
-const six = numberFuncGen(6);
-const seven = numberFuncGen(7);
-const eight = numberFuncGen(8);
-const nine = numberFuncGen(9);
+const zero = numGen(0);
+const one = numGen(1);
+const two = numGen(2);
+const three = numGen(3);
+const four = numGen(4);
+const five = numGen(5);
+const six = numGen(6);
+const seven = numGen(7);
+const eight = numGen(8);
+const nine = numGen(9);
 
-const operatorGen = (o) => (n) => o + n;
-
-const plus = operatorGen("+");
-const minus = operatorGen("-");
-const times = operatorGen("*");
-const dividedBy = operatorGen("/");
+const plus = (a) => (b) => a + b;
+const minus = (a) => (b) => b - a;
+const dividedBy = (a) => (b) => Math.floor(b / a);
+const times = (a) => (b) => a * b;
 
 console.log(seven(times(five()))); //35
 console.log(seven(times(four()))); //28
