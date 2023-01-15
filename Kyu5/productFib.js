@@ -3,21 +3,12 @@ function productFib(prod) {
   let n1 = 1;
 
   while (n * n1 < prod) {
-    if (Fib(n) * Fib(n + 1) === prod) {
-      return [Fib(n), Fib(n + 1), true];
-    }
-    n1 = n1;
-
+    next = n + n1;
     n = n1;
+    n1 = next;
   }
 
-  return [Fib(n), Fib(n + 1), false];
-}
-
-function Fib(n) {
-  if (n === 0) return 0;
-  if (n === 1) return 1;
-  return Fib(n - 1) + Fib(n - 2);
+  return [n, n1, n * n1 === prod];
 }
 
 // console.log(Fib(2) === 1);
