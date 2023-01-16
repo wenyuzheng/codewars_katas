@@ -9,11 +9,9 @@ function dirReduc(arr) {
   const stack = [];
   while (arr.length !== 0) {
     const pop = arr.splice(0, 1)[0];
-    if (directions[pop] === stack[stack.length - 1]) {
-      const test = stack.splice(-1);
-    } else {
-      stack.push(pop);
-    }
+    directions[pop] === stack[stack.length - 1]
+      ? stack.splice(-1)
+      : stack.push(pop);
   }
 
   return stack;
