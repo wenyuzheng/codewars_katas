@@ -1,0 +1,494 @@
+
+{
+  "header": {
+    "reportVersion": 2,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20230116.002438.18722.0.001.json",
+    "dumpEventTime": "2023-01-16T00:24:38Z",
+    "dumpEventTimeStamp": "1673828678891",
+    "processId": 18722,
+    "threadId": null,
+    "cwd": "/Users/zhengwenyu/codewars_katas",
+    "commandLine": [
+      "node",
+      "Kyu5/moving_zeros_to_end.js"
+    ],
+    "nodejsVersion": "v12.16.3",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "darwin",
+    "componentVersions": {
+      "node": "12.16.3",
+      "v8": "7.8.279.23-node.35",
+      "uv": "1.34.2",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.16.0",
+      "modules": "72",
+      "nghttp2": "1.40.0",
+      "napi": "5",
+      "llhttp": "2.0.4",
+      "http_parser": "2.9.3",
+      "openssl": "1.1.1g",
+      "cldr": "36.0",
+      "icu": "65.1",
+      "tz": "2019c",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.16.3/node-v12.16.3-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.16.3/node-v12.16.3.tar.gz"
+    },
+    "osName": "Darwin",
+    "osRelease": "21.5.0",
+    "osVersion": "Darwin Kernel Version 21.5.0: Tue Apr 26 21:08:22 PDT 2022; root:xnu-8020.121.3~4/RELEASE_X86_64",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz",
+        "speed": 2200,
+        "user": 17490650,
+        "nice": 0,
+        "sys": 13424160,
+        "idle": 84799590,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz",
+        "speed": 2200,
+        "user": 1407670,
+        "nice": 0,
+        "sys": 1514480,
+        "idle": 112746260,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz",
+        "speed": 2200,
+        "user": 15970500,
+        "nice": 0,
+        "sys": 11986450,
+        "idle": 87726990,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz",
+        "speed": 2200,
+        "user": 1362400,
+        "nice": 0,
+        "sys": 1328320,
+        "idle": 112974640,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz",
+        "speed": 2200,
+        "user": 13595040,
+        "nice": 0,
+        "sys": 8943010,
+        "idle": 93139480,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz",
+        "speed": 2200,
+        "user": 1376750,
+        "nice": 0,
+        "sys": 1262650,
+        "idle": 113022900,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz",
+        "speed": 2200,
+        "user": 12484240,
+        "nice": 0,
+        "sys": 7627730,
+        "idle": 95559540,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz",
+        "speed": 2200,
+        "user": 1419560,
+        "nice": 0,
+        "sys": 1214870,
+        "idle": 113024820,
+        "irq": 0
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "lo0",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "lo0",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "lo0",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "fe80::1",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 1
+      },
+      {
+        "name": "en0",
+        "internal": false,
+        "mac": "ac:bc:32:81:a2:3b",
+        "address": "fe80::480:9417:5834:961",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 4
+      },
+      {
+        "name": "en0",
+        "internal": false,
+        "mac": "ac:bc:32:81:a2:3b",
+        "address": "192.168.1.127",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "en0",
+        "internal": false,
+        "mac": "ac:bc:32:81:a2:3b",
+        "address": "fd00::1057:da9b:612f:80cd",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "awdl0",
+        "internal": false,
+        "mac": "fa:a2:8d:e6:86:38",
+        "address": "fe80::f8a2:8dff:fee6:8638",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 9
+      },
+      {
+        "name": "llw0",
+        "internal": false,
+        "mac": "fa:a2:8d:e6:86:38",
+        "address": "fe80::f8a2:8dff:fee6:8638",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 10
+      },
+      {
+        "name": "utun0",
+        "internal": false,
+        "mac": "00:00:00:00:00:00",
+        "address": "fe80::64f5:eca7:66fa:df3a",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 11
+      },
+      {
+        "name": "utun1",
+        "internal": false,
+        "mac": "00:00:00:00:00:00",
+        "address": "fe80::9fe8:8c3f:2c46:ab7f",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 12
+      },
+      {
+        "name": "utun2",
+        "internal": false,
+        "mac": "00:00:00:00:00:00",
+        "address": "fe80::ce81:b1c:bd2c:69e",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 13
+      }
+    ],
+    "host": "192.168.1.127"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x0000000100164e03",
+      "symbol": "report::TriggerNodeReport(v8::Isolate*, node::Environment*, char const*, char const*, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, v8::Local<v8::String>) [/Users/zhengwenyu/.nvm/versions/node/v12.16.3/bin/node]"
+    },
+    {
+      "pc": "0x000000010008645a",
+      "symbol": "node::OnFatalError(char const*, char const*) [/Users/zhengwenyu/.nvm/versions/node/v12.16.3/bin/node]"
+    },
+    {
+      "pc": "0x0000000100187c07",
+      "symbol": "v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/Users/zhengwenyu/.nvm/versions/node/v12.16.3/bin/node]"
+    },
+    {
+      "pc": "0x0000000100187ba7",
+      "symbol": "v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/Users/zhengwenyu/.nvm/versions/node/v12.16.3/bin/node]"
+    },
+    {
+      "pc": "0x0000000100315955",
+      "symbol": "v8::internal::Heap::FatalProcessOutOfMemory(char const*) [/Users/zhengwenyu/.nvm/versions/node/v12.16.3/bin/node]"
+    },
+    {
+      "pc": "0x00000001002e9fca",
+      "symbol": "v8::internal::Factory::NewFixedArrayWithFiller(v8::internal::RootIndex, int, v8::internal::Object, v8::internal::AllocationType) [/Users/zhengwenyu/.nvm/versions/node/v12.16.3/bin/node]"
+    },
+    {
+      "pc": "0x000000010045e1bf",
+      "symbol": "v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastPackedSmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)0> >::GrowCapacity(v8::internal::Handle<v8::internal::JSObject>, unsigned int) [/Users/zhengwenyu/.nvm/versions/node/v12.16.3/bin/node]"
+    },
+    {
+      "pc": "0x0000000100617f74",
+      "symbol": "v8::internal::Runtime_GrowArrayElements(int, unsigned long*, v8::internal::Isolate*) [/Users/zhengwenyu/.nvm/versions/node/v12.16.3/bin/node]"
+    },
+    {
+      "pc": "0x000000010097cc39",
+      "symbol": "Builtins_CEntry_Return1_DontSaveFPRegs_ArgvOnStack_NoBuiltinExit [/Users/zhengwenyu/.nvm/versions/node/v12.16.3/bin/node]"
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2876260352,
+    "totalCommittedMemory": 2844027224,
+    "usedMemory": 2841593096,
+    "availableMemory": 17014808,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 33088,
+        "capacity": 32808,
+        "used": 32808,
+        "available": 0
+      },
+      "new_space": {
+        "memorySize": 33554432,
+        "committedMemory": 1992672,
+        "capacity": 16759296,
+        "used": 0,
+        "available": 16759296
+      },
+      "old_space": {
+        "memorySize": 1712128,
+        "committedMemory": 1543688,
+        "capacity": 1520272,
+        "used": 1264760,
+        "available": 255512
+      },
+      "code_space": {
+        "memorySize": 430080,
+        "committedMemory": 175648,
+        "capacity": 156480,
+        "used": 156480,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 266240,
+        "committedMemory": 246800,
+        "capacity": 172000,
+        "used": 172000,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 1888440320,
+        "committedMemory": 1888440320,
+        "capacity": 1888419392,
+        "used": 1888419392,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 49152,
+        "committedMemory": 49152,
+        "capacity": 2784,
+        "used": 2784,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 951545856,
+        "committedMemory": 951545856,
+        "capacity": 951544872,
+        "used": 951544872,
+        "available": 0
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 2.24731,
+    "kernelCpuSeconds": 0.720953,
+    "cpuConsumptionPercent": 148.413,
+    "maxRss": 2931948519424,
+    "pageFaults": {
+      "IORequired": 71,
+      "IONotRequired": 702707
+    },
+    "fsActivity": {
+      "reads": 0,
+      "writes": 0
+    }
+  },
+  "libuv": [
+  ],
+  "workers": [
+  ],
+  "environmentVariables": {
+    "NVM_INC": "/Users/zhengwenyu/.nvm/versions/node/v12.16.3/include/node",
+    "TERM_PROGRAM": "vscode",
+    "rvm_bin_path": "/Users/zhengwenyu/.rvm/bin",
+    "NVM_CD_FLAGS": "",
+    "GEM_HOME": "/Users/zhengwenyu/.rvm/gems/ruby-3.1.0",
+    "TERM": "xterm-256color",
+    "SHELL": "/bin/zsh",
+    "IRBRC": "/Users/zhengwenyu/.rvm/rubies/ruby-3.1.0/.irbrc",
+    "TMPDIR": "/var/folders/59/1dz4fhlj3mbgh9srl9c9b31c0000gn/T/",
+    "CONDA_SHLVL": "1",
+    "TERM_PROGRAM_VERSION": "1.73.1",
+    "CONDA_PROMPT_MODIFIER": "(base) ",
+    "ORIGINAL_XDG_CURRENT_DESKTOP": "undefined",
+    "MallocNanoZone": "0",
+    "TERM_SESSION_ID": "5B046467-BA63-4806-95D1-5AD41D91E37F",
+    "MY_RUBY_HOME": "/Users/zhengwenyu/.rvm/rubies/ruby-3.1.0",
+    "NVM_DIR": "/Users/zhengwenyu/.nvm",
+    "USER": "zhengwenyu",
+    "COMMAND_MODE": "unix2003",
+    "CONDA_EXE": "/Users/zhengwenyu/opt/anaconda3/bin/conda",
+    "rvm_path": "/Users/zhengwenyu/.rvm",
+    "SSH_AUTH_SOCK": "/private/tmp/com.apple.launchd.plx2Ht7u3x/Listeners",
+    "__CF_USER_TEXT_ENCODING": "0x1F5:0x0:0x2",
+    "rvm_prefix": "/Users/zhengwenyu",
+    "PATH": "/Users/zhengwenyu/Library/Android/sdk/platform-tools:/Users/zhengwenyu/.nvm/versions/node/v12.16.3/bin:/Users/zhengwenyu/.rvm/gems/ruby-3.1.0/bin:/Users/zhengwenyu/.rvm/gems/ruby-3.1.0@global/bin:/Users/zhengwenyu/.rvm/rubies/ruby-3.1.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/zhengwenyu/.rvm/gems/ruby-3.1.0/bin:/Users/zhengwenyu/.rvm/gems/ruby-3.1.0@global/bin:/Users/zhengwenyu/.rvm/rubies/ruby-3.1.0/bin:/Users/zhengwenyu/.rbenv/shims:/Users/zhengwenyu/opt/anaconda3/bin:/Users/zhengwenyu/opt/anaconda3/condabin:/Users/zhengwenyu/Developer/flutter/bin:/Users/zhengwenyu/.rvm/bin:/Users/zhengwenyu/Developer/flutter/bin:/usr/local/mysql/bin:/Users/zhengwenyu/.npm-global/bin:/usr/local/Cellar/node/15.2.1/bin",
+    "LaunchInstanceID": "7720EF66-42E3-4463-87E4-D11A37F2D1D7",
+    "CONDA_PREFIX": "/Users/zhengwenyu/opt/anaconda3",
+    "__CFBundleIdentifier": "com.microsoft.VSCode",
+    "PWD": "/Users/zhengwenyu/codewars_katas",
+    "ANDROID_SDK": "/Users/zhengwenyu/Library/Android/sdk",
+    "LANG": "en_GB.UTF-8",
+    "VSCODE_GIT_ASKPASS_EXTRA_ARGS": "--ms-enable-electron-run-as-node",
+    "XPC_FLAGS": "0x0",
+    "RBENV_SHELL": "zsh",
+    "XPC_SERVICE_NAME": "0",
+    "rvm_version": "1.29.12-next (master)",
+    "SHLVL": "3",
+    "HOME": "/Users/zhengwenyu",
+    "VSCODE_GIT_ASKPASS_MAIN": "/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js",
+    "CONDA_PYTHON_EXE": "/Users/zhengwenyu/opt/anaconda3/bin/python",
+    "LOGNAME": "zhengwenyu",
+    "VSCODE_GIT_IPC_HANDLE": "/var/folders/59/1dz4fhlj3mbgh9srl9c9b31c0000gn/T/vscode-git-0f54ea0563.sock",
+    "GEM_PATH": "/Users/zhengwenyu/.rvm/gems/ruby-3.1.0:/Users/zhengwenyu/.rvm/gems/ruby-3.1.0@global",
+    "NVM_BIN": "/Users/zhengwenyu/.nvm/versions/node/v12.16.3/bin",
+    "CONDA_DEFAULT_ENV": "base",
+    "VSCODE_GIT_ASKPASS_NODE": "/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper",
+    "GIT_ASKPASS": "/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh",
+    "RUBY_VERSION": "ruby-3.1.0",
+    "SECURITYSESSIONID": "186a5",
+    "COLORTERM": "truecolor",
+    "_": "/Users/zhengwenyu/.nvm/versions/node/v12.16.3/bin/node"
+  },
+  "userLimits": {
+    "core_file_size_blocks": {
+      "soft": 0,
+      "hard": "unlimited"
+    },
+    "data_seg_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_locked_memory_bytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_memory_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "open_files": {
+      "soft": 1048575,
+      "hard": "unlimited"
+    },
+    "stack_size_bytes": {
+      "soft": 8388608,
+      "hard": 67104768
+    },
+    "cpu_time_seconds": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_user_processes": {
+      "soft": 2784,
+      "hard": 4176
+    },
+    "virtual_memory_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    }
+  },
+  "sharedObjects": [
+    "/Users/zhengwenyu/.nvm/versions/node/v12.16.3/bin/node",
+    "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+    "/usr/lib/libobjc.A.dylib",
+    "/usr/lib/liboah.dylib",
+    "/usr/lib/libfakelink.dylib",
+    "/usr/lib/libicucore.A.dylib",
+    "/usr/lib/libSystem.B.dylib",
+    "/System/Library/PrivateFrameworks/SoftLinking.framework/Versions/A/SoftLinking",
+    "/usr/lib/libc++abi.dylib",
+    "/usr/lib/libc++.1.dylib",
+    "/usr/lib/system/libcache.dylib",
+    "/usr/lib/system/libcommonCrypto.dylib",
+    "/usr/lib/system/libcompiler_rt.dylib",
+    "/usr/lib/system/libcopyfile.dylib",
+    "/usr/lib/system/libcorecrypto.dylib",
+    "/usr/lib/system/libdispatch.dylib",
+    "/usr/lib/system/libdyld.dylib",
+    "/usr/lib/system/libkeymgr.dylib",
+    "/usr/lib/system/libmacho.dylib",
+    "/usr/lib/system/libquarantine.dylib",
+    "/usr/lib/system/libremovefile.dylib",
+    "/usr/lib/system/libsystem_asl.dylib",
+    "/usr/lib/system/libsystem_blocks.dylib",
+    "/usr/lib/system/libsystem_c.dylib",
+    "/usr/lib/system/libsystem_collections.dylib",
+    "/usr/lib/system/libsystem_configuration.dylib",
+    "/usr/lib/system/libsystem_containermanager.dylib",
+    "/usr/lib/system/libsystem_coreservices.dylib",
+    "/usr/lib/system/libsystem_darwin.dylib",
+    "/usr/lib/system/libsystem_dnssd.dylib",
+    "/usr/lib/system/libsystem_featureflags.dylib",
+    "/usr/lib/system/libsystem_info.dylib",
+    "/usr/lib/system/libsystem_m.dylib",
+    "/usr/lib/system/libsystem_malloc.dylib",
+    "/usr/lib/system/libsystem_networkextension.dylib",
+    "/usr/lib/system/libsystem_notify.dylib",
+    "/usr/lib/system/libsystem_product_info_filter.dylib",
+    "/usr/lib/system/libsystem_sandbox.dylib",
+    "/usr/lib/system/libsystem_secinit.dylib",
+    "/usr/lib/system/libsystem_kernel.dylib",
+    "/usr/lib/system/libsystem_platform.dylib",
+    "/usr/lib/system/libsystem_pthread.dylib",
+    "/usr/lib/system/libsystem_symptoms.dylib",
+    "/usr/lib/system/libsystem_trace.dylib",
+    "/usr/lib/system/libunwind.dylib",
+    "/usr/lib/system/libxpc.dylib"
+  ]
+}
