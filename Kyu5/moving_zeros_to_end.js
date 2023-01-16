@@ -1,10 +1,5 @@
 function moveZeros(arr) {
-  const filtered = arr.filter((e) => e !== 0);
-  const zeros = arr.length - filtered.length;
-  for (let i = 0; i < zeros; i++) {
-    filtered.push(0);
-  }
-  return filtered;
+  return arr.filter((e) => e !== 0).concat(arr.filter((e) => e === 0));
 }
 
 // console.log(moveZeros([1])); // [1]
