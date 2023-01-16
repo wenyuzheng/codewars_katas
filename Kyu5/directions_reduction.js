@@ -9,8 +9,8 @@ function dirReduc(arr) {
   const stack = [];
   while (arr.length !== 0) {
     const pop = arr.splice(0, 1)[0];
-    if (directions[pop] === stack[0]) {
-      stack.splice(0, 1);
+    if (directions[pop] === stack[stack.length - 1]) {
+      const test = stack.splice(-1);
     } else {
       stack.push(pop);
     }
@@ -18,9 +18,10 @@ function dirReduc(arr) {
 
   return stack;
 }
+
 console.log(dirReduc(["NORTH", "SOUTH"])); // []
 console.log(
   dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])
 ); // ["WEST"]
 console.log(dirReduc(["NORTH", "SOUTH", "EAST", "WEST", "EAST", "WEST"])); // []
-// console.log(dirReduc(["NORTH", "WEST", "SOUTH", "EAST"])); // ["NORTH", "WEST", "SOUTH", "EAST"]
+console.log(dirReduc(["NORTH", "WEST", "SOUTH", "EAST"])); // ["NORTH", "WEST", "SOUTH", "EAST"]
