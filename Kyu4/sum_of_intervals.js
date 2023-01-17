@@ -16,20 +16,15 @@ function sumIntervals(intervals) {
         end = intervals[i][0];
       }
     }
-    // console.log({ start });
-    // console.log({ end });
 
-    sum += end - start;
+    const array = [];
+    for (let j = start; j < end; j++) {
+      array.push(j);
+    }
+
+    sum += array.length;
   });
   return sum;
-
-  //   let min = intervals[0][0];
-  //   let max = intervals[0][1];
-  //   intervals.map((pair) => {
-  //     if (pair[0] < min) min = pair[0];
-  //     if (pair[1] > max) max = pair[1];
-  //   });
-  //   return max - min;
 }
 
 console.log(sumIntervals([[1, 5]])); // 4
@@ -75,3 +70,13 @@ console.log(
     [30, 40],
   ]) === 100000030
 ); // 100000030
+
+console.log(
+  sumIntervals([
+    [-8, -5],
+    [10, 19],
+    [9, 18],
+    [1, 9],
+    [-14, -8],
+  ])
+);
