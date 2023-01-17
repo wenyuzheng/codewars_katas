@@ -16,8 +16,8 @@ function sumIntervals(intervals) {
         end = intervals[i][0];
       }
     }
-    console.log({ start });
-    console.log({ end });
+    // console.log({ start });
+    // console.log({ end });
 
     sum += end - start;
   });
@@ -32,33 +32,33 @@ function sumIntervals(intervals) {
   //   return max - min;
 }
 
-// console.log(sumIntervals([[1, 5]])); // 4
-// console.log(
-//   sumIntervals([
-//     [1, 5],
-//     [6, 10],
-//   ])
-// ); // 8
-// console.log(
-//   sumIntervals([
-//     [1, 2],
-//     [6, 10],
-//     [11, 15],
-//   ])
-// ); // 9
-// console.log(
-//   sumIntervals([
-//     [1, 4],
-//     [3, 5],
-//   ])
-// ); // 4
-// console.log(
-//   sumIntervals([
-//     [1, 4],
-//     [7, 10],
-//     [3, 5],
-//   ])
-// ); // 7
+console.log(sumIntervals([[1, 5]])); // 4
+console.log(
+  sumIntervals([
+    [1, 5],
+    [6, 10],
+  ])
+); // 8
+console.log(
+  sumIntervals([
+    [1, 2],
+    [6, 10],
+    [11, 15],
+  ])
+); // 9
+console.log(
+  sumIntervals([
+    [1, 4],
+    [3, 5],
+  ])
+); // 4
+console.log(
+  sumIntervals([
+    [1, 4],
+    [7, 10],
+    [3, 5],
+  ])
+); // 7
 console.log(
   sumIntervals([
     [1, 5],
@@ -68,10 +68,10 @@ console.log(
     [5, 11],
   ])
 ); // 19
-// console.log(
-//   sumIntervals([
-//     [0, 20],
-//     [-100000000, 10],
-//     [30, 40],
-//   ]) === 100000030
-// ); // 100000030
+console.log(
+  sumIntervals([
+    [0, 20],
+    [-100000000, 10],
+    [30, 40],
+  ]) === 100000030
+); // 100000030
