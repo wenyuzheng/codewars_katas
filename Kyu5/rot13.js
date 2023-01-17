@@ -36,8 +36,7 @@ function rot13(message) {
         .map((letter) => {
           const index = alphabet.indexOf(letter.toUpperCase());
           if (index === -1) return letter;
-          const rotIndex = index < 13 ? index + 13 : index - 13;
-          const rotLetter = alphabet[rotIndex];
+          const rotLetter = alphabet[index < 13 ? index + 13 : index - 13];
           return letter === letter.toLowerCase()
             ? rotLetter.toLowerCase()
             : rotLetter;
