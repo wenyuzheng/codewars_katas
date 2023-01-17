@@ -17,12 +17,12 @@ function sumIntervals(intervals) {
       }
     }
 
-    const array = [];
-    for (let j = start; j < end; j++) {
-      array.push(j);
-    }
+    // const array = [];
+    // for (let j = start; j < end; j++) {
+    //   array.push(j);
+    // }
 
-    sum += array.length;
+    sum += end >= 0 ? end - start : Math.abs(start - end);
   });
   return sum;
 }
@@ -68,9 +68,8 @@ console.log(
     [0, 20],
     [-100000000, 10],
     [30, 40],
-  ]) === 100000030
+  ])
 ); // 100000030
-
 console.log(
   sumIntervals([
     [-8, -5],
@@ -79,4 +78,4 @@ console.log(
     [1, 9],
     [-14, -8],
   ])
-);
+); // 27
