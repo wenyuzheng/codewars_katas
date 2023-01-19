@@ -6,13 +6,31 @@ function addIntervals(currIntervals, newIntervals) {
   } else if (currIntervals.length == 0) {
     currIntervals.push(newIntervals.shift());
     addIntervals(currIntervals, newIntervals);
-  } else if (newIntervals.shift()) {
+  } else {
+    currIntervals.forEach((curr) => {
+      const newIn = newIntervals.shift();
+      // if (curr[0] <= newIn[0] && curr[1] <= newIn[1]) {
+      //   addIntervals(currIntervals, [...newIntervals, [curr[1], newIn[1]]]);
+      // }
+      console.log({ newIn });
+    });
   }
+
   return currIntervals;
 }
 
 console.log(addIntervals([10, 11], []));
 console.log(addIntervals([], [[-10, -6]]));
+console.log(
+  addIntervals(
+    [
+      [1, 2],
+      [6, 7],
+      [10, 11],
+    ],
+    [[8, 9]]
+  )
+); // [[-10,-6],[9,16]]
 
 // function addOneInterval(existing, newIn) {
 //   if (existing.length === 0) {
