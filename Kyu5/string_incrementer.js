@@ -9,4 +9,6 @@ function incrementString(strng) {
 
 console.log(incrementString("1")); // "2"
 console.log(incrementString("009")); // "010"
+console.log(incrementString("999")); // "1000"
+
 // console.log(incrementString("foo")); // "foo1"
