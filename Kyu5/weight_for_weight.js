@@ -1,19 +1,12 @@
 function orderWeight(string) {
-  let weights = [];
-  string
+  return string
     .trim()
     .split(" ")
     .sort()
-    .forEach((e) => {
-      weights.push([e, e.split("").reduce((a, b) => Number(a) + Number(b), 0)]);
-    });
-
-  const str = weights
+    .map((e) => [e, e.split("").reduce((a, b) => Number(a) + Number(b), 0)])
     .sort((a, b) => a[1] - b[1])
     .map((e) => e[0].toString())
     .join(" ");
-
-  return str;
 }
 
 console.log(orderWeight("") === ""); // ""
