@@ -2,8 +2,14 @@ const findPosition = (intervals, newNum) => {
   for (let i = 0; i < intervals.length; i++) {
     if (intervals[i][0] <= newNum && newNum <= intervals[i][1])
       return ["IN", i];
-    if (intervals[i][1] < newNum && newNum < intervals[i + 1][0])
+    if (
+      intervals[i + 1] &&
+      intervals[i][1] < newNum &&
+      newNum < intervals[i + 1][0]
+    )
       return ["AF", i];
+
+    if (!intervals[i + 1]) return ["AF", intervals.length];
   }
 };
 
@@ -37,11 +43,13 @@ const mergeCase4 = (intervals, newInterval, startIndex, endIndex) => {
 };
 
 const addOneIntervals = (intervals, newInterval) => {
+  if (intervals.length === 0) {
+    intervals.push(newInterval);
+    return intervals;
+  }
+
   const [startPos, startIndex] = findPosition(intervals, newInterval[0]);
   const [endPos, endIndex] = findPosition(intervals, newInterval[1]);
-
-  //   console.log(startPos, startIndex);
-  //   console.log(endPos, endIndex);
 
   if (startPos === "IN" && endPos === "IN") {
     return mergeCase1(intervals, newInterval, startIndex, endIndex);
@@ -60,28 +68,63 @@ const addOneIntervals = (intervals, newInterval) => {
   }
 };
 
-const unionIntervals = (intervals) => {
+const sumIntervals = (intervals) => {
+  intervals.sort((a, b) => a[0] - b[0]);
   let result = [];
   while (intervals.length > 0) {
     const newInterval = intervals.shift();
-    console.log({ newInterval });
     result = addOneIntervals(result, newInterval);
   }
-  return result;
+  let sum = 0;
+  result.forEach((e) => (sum += e[1] - e[0]));
+  return sum;
 };
 
 console.log(
   unionIntervals([
-    [1, 3],
-    // [4, 6],
-    // [7, 8],
-    // [9, 11],
-    // [13, 15],
-    // [17, 19],
+    [-10, -6],
+    [9, 16],
+    [10, 18],
+    [-1, 4],
+    [13, 22],
+    [-17, -8], // 29
+    [-3, 7],
+    [-1, 6],
   ])
-);
+); //34
 
-// console.log(findPosition([[1, 4]], 2)); // ["IN", 0]
+// console.log(
+//   unionIntervals([
+//     [1, 3],
+//     [4, 6],
+//     [7, 8],
+//     [9, 11],
+//     [13, 15],
+//     [17, 19],
+//   ])
+// );
+// console.log(
+//   unionIntervals([
+//     [1, 3],
+//     [2, 6],
+//     [7, 8],
+//     [9, 11],
+//     [13, 15],
+//     [17, 19],
+//   ])
+// );
+
+// console.log(findPosition([[1, 3]], 4)); // ["IN", 0]
+// console.log(
+//   findPosition(
+//     [
+//       [1, 3],
+//       [4, 6],
+//     ],
+//     2
+//   )
+// ); // ["IN", 0]
+
 // console.log(
 //   findPosition(
 //     [
