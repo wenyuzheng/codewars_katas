@@ -1,32 +1,41 @@
 function score(dice) {
-  //   const rules = {
-  //     "1,1,1": 1000,
-  //     "6,6,6": 600,
-  //     "5,5,5": 500,
-  //     "4,4,4": 400,
-  //     "3,3,3": 300,
-  //     "2,2,2": 200,
-  //     1: 100,
-  //     5: 50,
-  //   };
-
-  const rules = {
-    1: { 1: 100, 3: 1000 },
-    2: { 3: 200 },
-    3: { 3: 300 },
-    4: { 3: 400 },
-    5: { 1: 50, 3: 500 },
-    6: { 3: 600 },
-  };
-
   const occurrences = dice.reduce((obj, die) => {
     obj[die] ? obj[die]++ : (obj[die] = 1);
     return obj;
   }, {});
 
+  let sum = 0;
+
   Object.keys(occurrences).forEach((e) => {
-    console.log(Object.keys(rules[e]).includes(occurrences[e]));
+    e = parseInt(e);
+
+    if (e === 1) {
+      console.log(occurrences[e]);
+      if (occurrences[e] > 3) {
+        sum += 1000;
+        occurrences[e] -= 3;
+      }
+      if (occurrences[e] >= 1) {
+        sum += occurrences[e] * 100;
+      }
+    }
+
+    if (e === 5) {
+      if (occurrences[e] > 3) {
+        sum += 500;
+        occurrences[e] -= 3;
+      }
+      if (occurrences[e] >= 1) {
+        sum += occurrences[e] * 50;
+      }
+    }
+
+    if (2 <= e <= 6 && occurrences[e] === 3) {
+      sum += e * 100;
+      occurrences[e] -= 3;
+    }
   });
+  return sum;
 }
 
 // Three 1's => 1000 points
@@ -39,6 +48,8 @@ function score(dice) {
 // One   5   =>   50 point
 
 console.log(score([5, 1, 3, 4, 1])); // 250
-// console.log(score([2, 3, 4, 6, 2])); // 0
-// console.log(score([4, 4, 4, 3, 3])); // 400
-// console.log(score([2, 4, 4, 5, 4])); // 450
+console.log(score([2, 3, 4, 6, 2])); // 0
+console.log(score([4, 4, 4, 3, 3])); // 400
+console.log(score([2, 4, 4, 5, 4])); // 450
+// console.log(score([1, 1, 1, 1, 1])); // 1200
+// console.log(score([5, 5, 5, 5, 5])); // 600
