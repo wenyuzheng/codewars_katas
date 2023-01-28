@@ -25,15 +25,30 @@ var joinNumbers = function (arr) {
 };
 
 var maxSequence = function (arr) {
-  if (arr.length === 0) return 0;
   arr = removeLeadOrEndNegatives(arr);
+  if (arr.length === 0) return 0;
+  arr = joinNumbers(arr);
+
+  console.log({ arr });
+  let maxSum = 0;
+  //   for (let i = 0; i < arr.length; i += 2) {
+  //   console.log({ i });
+  arr.reduce((sum, e) => {
+    sum += e;
+    if (sum > maxSum) maxSum = sum;
+  }, 0);
+  //   }
+
+  return maxSum;
 };
 
 // console.log(maxSequence([])); // 0
-// console.log(maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4])); // 6
+// console.log(maxSequence([-1, -2, -3])); // 0
+console.log(maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4])); // 6
+// console.log(maxSequence([2, 1, -5, 5])); // 6
 
 // console.log(
 //   removeLeadOrEndNegatives([0, -3, -2, 1, -3, 4, -1, 2, 1, -5, 4, -1, -2])
 // );
 
-console.log(joinNumbers([1, -3, -2, 4, 4, 5, -10, -1, 2, 1, -5, 4]));
+// console.log(joinNumbers([1, -3, -2, 4, 4, 5, -10, -1, 2, 1, -5, 4]));
