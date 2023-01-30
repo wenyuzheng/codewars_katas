@@ -26,7 +26,8 @@ class PaginationHelper {
   pageIndex(itemIndex) {
     // determines what page an item is on. Zero based indexes
     // this method should return -1 for itemIndex values that are out of range
-    if (1 < itemIndex || itemIndex < this.itemCount()) return -1;
+    if (1 > itemIndex || itemIndex > this.itemCount()) return -1;
+    else return this.itemCount() % itemIndex;
   }
 }
 
@@ -37,8 +38,8 @@ console.log(helper.pageItemCount(0)); //should == 4
 console.log(helper.pageItemCount(1)); // last page - should == 2
 console.log(helper.pageItemCount(2)); // should == -1 since the page is invalid
 
-// // pageIndex takes an item index and returns the page that it belongs on
-// console.log(helper.pageIndex(5)); //should == 1 (zero based index)
-// console.log(helper.pageIndex(2)); //should == 0
+// pageIndex takes an item index and returns the page that it belongs on
+console.log(helper.pageIndex(5)); //should == 1 (zero based index)
+console.log(helper.pageIndex(2)); //should == 0
 console.log(helper.pageIndex(20)); //should == -1
 console.log(helper.pageIndex(-10)); //should == -1
