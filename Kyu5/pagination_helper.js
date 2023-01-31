@@ -19,17 +19,23 @@ class PaginationHelper {
 
     const totalPages = this.pageCount() - 1; //start from 0
 
-    if (pageIndex > totalPages) return -1;
-    if (pageIndex === totalPages) return this.itemCount() % this.itemsPerPage;
+    if (pageIndex > totalPages || pageIndex < 0) return -1;
+    if (pageIndex === totalPages) {
+      if (this.itemsPerPage === this.itemCount()) return this.itemsPerPage;
+      else return this.itemCount() % this.itemsPerPage;
+    }
     return this.itemsPerPage;
   }
   pageIndex(itemIndex) {
     // determines what page an item is on. Zero based indexes
     // this method should return -1 for itemIndex values that are out of range
-    if (0 > itemIndex || itemIndex > this.itemCount() || this.itemCount() === 0)
+    if (
+      0 > itemIndex ||
+      itemIndex >= this.itemCount() ||
+      this.itemCount() === 0
+    )
       return -1;
-    if (itemIndex === 0) return 0;
-    else return this.itemCount() % itemIndex;
+    else return Math.floor(itemIndex / this.itemsPerPage);
   }
 }
 
@@ -46,19 +52,15 @@ class PaginationHelper {
 // console.log(helper.pageIndex(20)); //should == -1
 // console.log(helper.pageIndex(-10)); //should == -1
 
-const collection = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-  23, 24,
-];
-const helper = new PaginationHelper(collection, 10);
-// console.log(helper.pageCount()); //should == 3
-console.log(helper.itemCount()); //should == 24
-// console.log(helper.pageItemCount(1)); //should == 10
-// console.log(helper.pageItemCount(2)); // 4
-// console.log(helper.pageItemCount(3)); // -1
+const helper = new PaginationHelper([], 12);
+console.log(helper.pageCount());
+console.log(helper.itemCount());
+console.log(helper.pageItemCount(0));
+console.log(helper.pageIndex(11));
 
-// pageIndex takes an item index and returns the page that it belongs on
-// console.log(helper.pageIndex(22)); //should == 22 (zero based index)
-console.log(helper.pageIndex(0)); //should == 0
-// console.log(helper.pageIndex(20)); //should == -1
-// console.log(helper.pageIndex(-10)); //should == -1
+// const collection = Array.from({ length: 14 }, (index) => index);
+// const helper = new PaginationHelper(collection, 12);
+// console.log(helper.pageCount());
+// console.log(helper.itemCount());
+// console.log(helper.pageItemCount(0));
+// console.log(helper.pageIndex(11));
