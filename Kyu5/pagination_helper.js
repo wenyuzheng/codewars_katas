@@ -17,14 +17,10 @@ class PaginationHelper {
     // returns the number of items on the current page. page_index is zero based.
     // this method should return -1 for pageIndex values that are out of range
 
-    const totalPages = this.pageCount() - 1; //start from 0
-
-    if (pageIndex > totalPages || pageIndex < 0) return -1;
-    if (pageIndex === totalPages) {
-      if (this.itemsPerPage === this.itemCount()) return this.itemsPerPage;
-      else return this.itemCount() % this.itemsPerPage;
-    }
-    return this.itemsPerPage;
+    if (pageIndex >= this.pageCount() || pageIndex < 0) return -1;
+    if (pageIndex < Math.floor(this.itemCount() / this.itemsPerPage))
+      return this.itemsPerPage;
+    return this.itemCount() % this.itemsPerPage;
   }
   pageIndex(itemIndex) {
     // determines what page an item is on. Zero based indexes
@@ -52,15 +48,15 @@ class PaginationHelper {
 // console.log(helper.pageIndex(20)); //should == -1
 // console.log(helper.pageIndex(-10)); //should == -1
 
-const helper = new PaginationHelper([], 12);
-console.log(helper.pageCount());
-console.log(helper.itemCount());
-console.log(helper.pageItemCount(0));
-console.log(helper.pageIndex(11));
-
-// const collection = Array.from({ length: 14 }, (index) => index);
-// const helper = new PaginationHelper(collection, 12);
+// const helper = new PaginationHelper([], 12);
 // console.log(helper.pageCount());
 // console.log(helper.itemCount());
 // console.log(helper.pageItemCount(0));
+// console.log(helper.pageIndex(11));
+
+const collection = Array.from({ length: 9 }, (index) => index);
+const helper = new PaginationHelper(collection, 3);
+// console.log(helper.pageCount());
+// console.log(helper.itemCount());
+console.log(helper.pageItemCount(2));
 // console.log(helper.pageIndex(11));
