@@ -4,8 +4,23 @@
 function mergesorted(a, b) {
   if (a.length <= 1 && b.length === 0) return a;
   if (a.length === 0 && b.length <= 1) return b;
+
+  let result = [];
+  while (a.length != 0 && b.length != 0) {
+    if (a[0] < b[0]) {
+      result.push(a.shift());
+    } else if (a[0] === b[0]) {
+      result.push(a.shift());
+      result.push(b.shift());
+    } else {
+      result.push(b.shift());
+    }
+  }
+
+  return [...result, ...a, ...b];
 }
 
 console.log(mergesorted([], [])); // []
 console.log(mergesorted([1], [])); // [1]
 console.log(mergesorted([], [1])); // [1]
+console.log(mergesorted([1, 2], [1])); // [1,1,2]
