@@ -1,14 +1,18 @@
-const base10ToBase2Converter = (num) => {
+const base10ToBase2Converter = (num, res = 0) => {
+  if (num === 0) return res;
   let i = 0;
   while (true) {
     if (num < 2 ** i) {
-      return 2 ** (i - 1);
+      res += 10 ** (i - 1);
+      num = num - 2 ** (i - 1);
+      return base10ToBase2Converter(num, res);
     }
     i++;
   }
 };
 
-console.log(base10ToBase2Converter(32));
+console.log(base10ToBase2Converter(25)); // 10000
+console.log(base10ToBase2Converter(33)); // 100000
 
 // 110101 = 1+ 4+16+32
 // 100000 = 32
