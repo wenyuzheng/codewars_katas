@@ -6,15 +6,10 @@
 
 const base10ToBase3Converter = (num, res = 0) => {
   if (num === 0) return res;
+
   let i = 0;
-  while (true) {
-    if (num < 3 ** i) {
-      res += 10 ** (i - 1);
-      num = num - 3 ** (i - 1);
-      return base10ToBase3Converter(num, res);
-    }
-    i++;
-  }
+  while (num >= 3 ** i) i++;
+  return base10ToBase3Converter(num - 3 ** (i - 1), res + 10 ** (i - 1));
 };
 
 console.log(base10ToBase3Converter(1)); // 1
