@@ -3,3 +3,18 @@
 // 200 = 2*(3**2) => 18 base10
 // 10 = 3**1 => 3 base10
 // 1 = 3**0 => 1 base10
+
+const base10ToBase3Converter = (num, res = 0) => {
+  if (num === 0) return res;
+  let i = 0;
+  while (true) {
+    if (num < 3 ** i) {
+      res += 10 ** (i - 1);
+      num = num - 3 ** (i - 1);
+      return base10ToBase3Converter(num, res);
+    }
+    i++;
+  }
+};
+
+console.log(base10ToBase3Converter(1)); // 1
