@@ -18,3 +18,6 @@ const base10ToBase3Converter = (num, res = 0) => {
 };
 
 console.log(base10ToBase3Converter(1)); // 1
+console.log(base10ToBase3Converter(3)); // 10
+console.log(base10ToBase3Converter(18)); // 200
+console.log(base10ToBase3Converter(162)); // 20000
