@@ -14,3 +14,4 @@ const base10ToBaseNConverter = (num, base, res = 0) => {
 
 console.log(base10ToBaseNConverter(25, 2)); // 11001
 console.log(base10ToBaseNConverter(33, 2)); // 100001
+console.log(base10ToBaseNConverter(162, 3)); // 20000
