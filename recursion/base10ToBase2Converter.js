@@ -1,16 +1,25 @@
-const base10ToBase2Converter = (num, res = 0) => {
-  if (num === 0) return res;
-  let i = 0;
-  while (true) {
-    if (num < 2 ** i) {
-      res += 10 ** (i - 1);
-      num -= 2 ** (i - 1);
-      return base10ToBase2Converter(num, res);
-    }
-    i++;
-  }
+// const base10ToBase2Converter = (num, res = 0) => {
+//   if (num === 0) return res;
+//   let i = 0;
+//   while (true) {
+//     if (num < 2 ** i) {
+//       res += 10 ** (i - 1);
+//       num -= 2 ** (i - 1);
+//       return base10ToBase2Converter(num, res);
+//     }
+//     i++;
+//   }
+// };
+
+const base10ToBase2Converter = (num, res = []) => {
+  if (num === 0) return parseInt(res.join(""));
+
+  res = [num % 2, ...res];
+  num = Math.floor(num / 2);
+  return base10ToBase2Converter(num, res);
 };
 
+console.log(base10ToBase2Converter(9)); // 1001
 console.log(base10ToBase2Converter(25)); // 11001
 console.log(base10ToBase2Converter(33)); // 100001
 

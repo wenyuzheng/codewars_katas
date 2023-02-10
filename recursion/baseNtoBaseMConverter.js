@@ -25,3 +25,4 @@ console.log(baseNToBaseMConverter(101, 2, 5)); // 10
 // 101 = 100 + 1
 // 100 base2 = 04 base5
 // 1 base2 = 01 base5
+// 01 + 04 = 10 base5
