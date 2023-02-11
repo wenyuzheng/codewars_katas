@@ -15,19 +15,29 @@
 //   }
 // };
 
-const baseNToBaseMConverter = (num, n, m, res = 0) => {
+const baseNToBaseMConverter = (num, n, m) => {
   // base n -> base 10 -> base m
 
-  if (num === 0) return res;
+  let sum = 0;
+  const numDigits = num.toString().split("").reverse();
+  for (let i = 0; i < numDigits.length; i++) {
+    sum += parseInt(numDigits[i]) * n ** i;
+  }
 
-  num.toString().split("");
+  let res = [];
+  while (sum !== 0) {
+    res = [sum % m, ...res];
+    sum = Math.floor(sum / m);
+  }
+
+  return parseInt(res.join(""));
 };
 
-// console.log(baseNToBaseMConverter(101, 2, 5)); // 10
+console.log(baseNToBaseMConverter(101, 2, 5)); // 10
 console.log(baseNToBaseMConverter(101, 2, 3)); // 12
 
-// console.log(baseNToBaseMConverter(100, 2, 5)); // 4
-// console.log(baseNToBaseMConverter(1000, 2, 5)); // 13
+console.log(baseNToBaseMConverter(100, 2, 5)); // 4
+console.log(baseNToBaseMConverter(1000, 2, 5)); // 13
 
 // 101 5
 
