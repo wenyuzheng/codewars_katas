@@ -4,15 +4,23 @@
 // 10 = 3**1 => 3 base10
 // 1 = 3**0 => 1 base10
 
-const base10ToBase3Converter = (num, res = 0) => {
-  if (num === 0) return res;
+// const base10ToBase3Converter = (num, res = 0) => {
+//   if (num === 0) return res;
 
-  let i = 0;
-  while (num >= 3 ** i) i++;
-  return base10ToBase3Converter(num - 3 ** (i - 1), res + 10 ** (i - 1));
+//   let i = 0;
+//   while (num >= 3 ** i) i++;
+//   return base10ToBase3Converter(num - 3 ** (i - 1), res + 10 ** (i - 1));
+// };
+
+const base10ToBase3Converter = (num, m, res = []) => {
+  if (num === 0) return parseInt(res.join(""));
+
+  res = [num % m, ...res];
+  num = Math.floor(num / m);
+  return base10ToBase3Converter(num, m, res);
 };
 
-console.log(base10ToBase3Converter(1)); // 1
-console.log(base10ToBase3Converter(3)); // 10
-console.log(base10ToBase3Converter(18)); // 200
-console.log(base10ToBase3Converter(162)); // 20000
+console.log(base10ToBase3Converter(1, 3)); // 1
+console.log(base10ToBase3Converter(3, 3)); // 10
+console.log(base10ToBase3Converter(18, 3)); // 200
+console.log(base10ToBase3Converter(162, 3)); // 20000
