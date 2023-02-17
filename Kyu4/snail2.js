@@ -1,22 +1,16 @@
 // each round remove top row only -> turn 90 degrees anticlockwise -> remove and repeat
 
-const snail2 = (array) => {};
-
-const removeTopRow = (array) => {
-  array.shift();
-  return array;
+const snail2 = (array, res = []) => {
+  if (array.length === 0) {
+    return res;
+  }
+  res.push(...array.shift());
+  const newArray = turnAnticlockwise(array);
+  return snail2(newArray, res);
 };
 
-// console.log(
-//   removeTopRow([
-//     [1, 2, 3, 3],
-//     [4, 5, 6, 6],
-//     [7, 8, 9, 9],
-//     [7, 8, 9, 9],
-//   ])
-// );
-
 const turnAnticlockwise = (array) => {
+  if (array.length === 0) return [];
   const newArr = [];
   const n = array[0].length;
   const m = array.length;
@@ -50,23 +44,23 @@ console.log(
 //     [7, 8, 9],
 //   ])
 // ); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
-// console.log(
-//   snail2([
-//     [1, 2, 3, 3],
-//     [4, 5, 6, 6],
-//     [7, 8, 9, 9],
-//     [7, 8, 9, 9],
-//   ])
-// ); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
-// console.log(
-//   snail2([
-//     [1, 2, 3, 4, 5],
-//     [6, 7, 8, 9, 10],
-//     [11, 12, 13, 14, 15],
-//     [16, 17, 18, 19, 20],
-//     [21, 22, 23, 24, 25],
-//   ])
-// ); // [1, 2, 3, 4, 5, 10, 15, 20, 25, 24, 23, 22, 21, 16, 11, 6, 7, 8, 9, 14, 19, 18, 17, 12, 13]
+console.log(
+  snail2([
+    [1, 2, 3, 3],
+    [4, 5, 6, 6],
+    [7, 8, 9, 9],
+    [7, 8, 9, 9],
+  ])
+); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
+console.log(
+  snail2([
+    [1, 2, 3, 4, 5],
+    [6, 7, 8, 9, 10],
+    [11, 12, 13, 14, 15],
+    [16, 17, 18, 19, 20],
+    [21, 22, 23, 24, 25],
+  ])
+); // [1, 2, 3, 4, 5, 10, 15, 20, 25, 24, 23, 22, 21, 16, 11, 6, 7, 8, 9, 14, 19, 18, 17, 12, 13]
 // console.log(
 //   snail([
 //     [1, 2, 3, 4, 5, 6],
