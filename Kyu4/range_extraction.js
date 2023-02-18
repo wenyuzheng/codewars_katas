@@ -2,28 +2,30 @@ function solution(list) {
   let res = "";
   let range = [];
 
-  for (let i = 0; i < list.length; i++) {
-    if (range.length === 0) {
-      range.push(list[i]);
-    }
+  list.forEach((e) => (res += e + ","));
 
-    if (range[range.length - 1] + 1 === list[i]) {
-      range.push(list[i]);
-    }
-
-    // if (range[range.length - 1] + 1 !== list[i]) {
-    //   if (range.length >= 3) {
-    //     res += range[0] + "-" + range[range.length - 1] + ",";
-    //   } else {
-    //     range.forEach((e) => (res += e + ","));
-    //   }
-    //   range = [];
-    // }
-  }
-  return res;
+  //   for (let i = 0; i < list.length; i++) {
+  // if (range.length === 0) {
+  //   range.push(list[i]);
+  // }
+  // if (range[range.length - 1] + 1 === list[i]) {
+  //   range.push(list[i]);
+  // }
+  // if (range[range.length - 1] + 1 !== list[i]) {
+  //   if (range.length >= 3) {
+  //     res += range[0] + "-" + range[range.length - 1] + ",";
+  //   } else {
+  //     range.forEach((e) => (res += e + ","));
+  //   }
+  //   range = [];
+  // }
+  //   }
+  return res.slice(0, -1);
 }
 
-console.log(solution([17, 18, 19, 20])); // "17-20"
+console.log(solution([10, 11, 14, 15])); // "10,11,14,15,"
+
+// console.log(solution([17, 18, 19, 20])); // "17-20"
 
 // console.log(
 //   solution([
