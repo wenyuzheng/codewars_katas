@@ -1,21 +1,17 @@
 function solution(list) {
   let res = "";
-  let range = [];
+  let range = [list[0]];
 
-  for (let i = 0; i < list.length; i++) {
-    if (range.length === 0) {
+  for (let i = 1; i < list.length; i++) {
+    if (range[range.length - 1] + 1 === list[i]) {
       range.push(list[i]);
     } else {
-      if (range[range.length - 1] + 1 === list[i]) {
-        range.push(list[i]);
+      if (range.length >= 3) {
+        res += range[0] + "-" + range[range.length - 1] + ",";
       } else {
-        if (range.length >= 3) {
-          res += range[0] + "-" + range[range.length - 1] + ",";
-        } else {
-          range.forEach((e) => (res += e + ","));
-        }
-        range = [list[i]];
+        range.forEach((e) => (res += e + ","));
       }
+      range = [list[i]];
     }
   }
   if (range.length !== 0) {
