@@ -28,11 +28,7 @@ function formatDuration(seconds) {
     if (durations[k] === 0) {
       continue;
     }
-    if (durations[k] > 1) {
-      res.push(durations[k] + " " + k + "s");
-    } else {
-      res.push(durations[k] + " " + k);
-    }
+    res.push(durations[k] + " " + k + (durations[k] > 1 ? "s" : ""));
   }
 
   if (res.length === 1) {
