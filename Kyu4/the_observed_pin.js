@@ -1,12 +1,3 @@
-function getPINs(observed) {
-  const digits = observed.split("");
-
-  digits.forEach((digit) => {
-    const adjacents = getAdjacents(digit);
-    console.log({ adjacents });
-  });
-}
-
 const getAdjacents = (digit) => {
   // ┌───┬───┬───┐
   // │ 1 │ 2 │ 3 │
@@ -43,6 +34,41 @@ const getAdjacents = (digit) => {
 };
 
 // console.log(getAdjacents("8"));
+
+const joinElements = (array) => {
+  if (array.length === 1) return array[0];
+
+  let res = [];
+  for (let j = 0; j < array.length - 1; j++) {
+    const arr1 = array.shift();
+    const arr2 = array.shift();
+    for (let i = 0; i < arr1.length; i++) {
+      arr2.forEach((e) => {
+        res.push(arr1[i] + e);
+      });
+    }
+  }
+
+  return joinElements([res, ...array]);
+};
+
+// console.log(
+//   joinElements([
+//     ["2", "3", "6"],
+//     ["3", "5", "6", "9"],
+//     ["6", "8", "9"],
+//   ])
+// );
+
+function getPINs(observed) {
+  const digits = observed.split("");
+
+  const adjacents = [];
+  digits.forEach((digit) => {
+    adjacents.push(getAdjacents(digit));
+  });
+  return joinElements(adjacents);
+}
 
 console.log(getPINs("8")); // ["5", "7", "8", "9", "0"]
 console.log(getPINs("11")); // ["11", "22", "44", "12", "21", "14", "41", "24", "42"]
