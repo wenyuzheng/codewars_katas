@@ -23,7 +23,33 @@ function formatDuration(seconds) {
     (((seconds % (366 * 24 * 60 * 60)) % (24 * 60 * 60)) % (60 * 60)) % 60
   );
 
-  return durations;
+  let res = [];
+  for (const k in durations) {
+    if (durations[k] === 0) {
+      continue;
+    }
+    if (durations[k] > 1) {
+      res.push(durations[k] + " " + k + "s");
+    } else {
+      res.push(durations[k] + " " + k);
+    }
+  }
+
+  if (res.length === 1) {
+    return res.join();
+  } else if (res.length === 2) {
+    return res.join(" and ");
+  } else {
+    let str = "";
+    for (let i = 0; i < res.length - 1; i++) {
+      if (i === res.length - 2) {
+        str += res[i] + " and " + res[i + 1];
+      } else {
+        str += res[i] + ", ";
+      }
+    }
+    return str;
+  }
 }
 
 console.log(formatDuration(0)); // "now"
@@ -32,4 +58,4 @@ console.log(formatDuration(62)); // "1 minute and 2 seconds"
 console.log(formatDuration(120)); // "2 minutes"
 console.log(formatDuration(3600)); // "1 hour"
 console.log(formatDuration(3662)); // "1 hour, 1 minute and 2 seconds"
-console.log(formatDuration(368 * 24 * 60 * 60 + 3600 * 2.5));
+// console.log(formatDuration(368 * 24 * 60 * 60 + 3600 * 2.5));
