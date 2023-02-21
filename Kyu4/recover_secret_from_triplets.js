@@ -2,23 +2,40 @@ var recoverSecret = function (triplets) {
   const letters = [...triplets[0]];
 
   for (let i = 1; i < triplets.length; i++) {
-    let index;
-    let existence = [false, false, false];
-    for (let j = 0; j < triplets[i].length; j++) {
-      const newIndex = letters.indexOf(triplets[i][j]);
-      if (newIndex !== -1) {
-        index = newIndex;
-        existence[j] = true;
-      }
-    }
-    console.log({ index, existence });
-    if (index === undefined) {
+    let existence = [];
+    triplets[i].forEach((letter) => {
+      existence.push(letters.indexOf(letter) !== -1);
+    });
+    existence = existence.join();
+
+    if (existence === "false,false,false") {
       letters.push(...triplets[i]);
-    } else {
-      existence.forEach((e) => {
-        if (e === false) {
-        }
-      });
+    } else if (existence === "true,false,false") {
+      const index = letters.indexOf(triplets[i][0]);
+      letters.splice(index + 1, 0, triplets[i][1], triplets[i][2]);
+    } else if (existence === "true,false,true") {
+      const index = letters.indexOf(triplets[i][0]);
+      letters.splice(index + 1, 0, triplets[i][1]);
+    } else if (existence === "true,true,false") {
+      const index = letters.indexOf(triplets[i][1]);
+      letters.splice(index + 1, 0, triplets[i][2]);
+    } else if (existence === "false,true,false") {
+      const index = letters.indexOf(triplets[i][1]);
+      letters.splice(index + 1, 0, triplets[i][2]);
+      index === 0
+        ? letters.unshift(triplets[i][0])
+        : letters.splice(index - 1, 0, triplets[i][0]);
+    } else if (existence === "false,true,true") {
+      const index = letters.indexOf(triplets[i][1]);
+      index === 0
+        ? letters.unshift(triplets[i][0])
+        : letters.splice(index, 0, triplets[i][0]);
+    } else if (existence === "false,false,true") {
+      const index = letters.indexOf(triplets[i][2]);
+
+      index === 0
+        ? letters.unshift(triplets[i][0], triplets[i][1])
+        : letters.splice(index, 0, triplets[i][0], triplets[i][1]);
     }
   }
 
@@ -38,9 +55,9 @@ console.log(
     ["t", "u", "p"],
     ["w", "h", "i"],
     ["t", "s", "u"],
-    // ["a", "t", "s"],
-    // ["h", "a", "p"],
-    // ["t", "i", "s"],
-    // ["w", "h", "s"],
+    ["a", "t", "s"],
+    ["h", "a", "p"],
+    ["t", "i", "s"],
+    ["w", "h", "s"],
   ])
 ); // "whatisup"
