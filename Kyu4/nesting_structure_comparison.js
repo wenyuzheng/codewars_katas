@@ -4,12 +4,7 @@ Array.prototype.sameStructureAs = function (other) {
   // Note: You are given a function isArray(o) that returns
   // whether its argument is an array.
 
-  if (
-    !Array.isArray(this) ||
-    !Array.isArray(other) ||
-    this.length !== other.length
-  )
-    return false;
+  if (!Array.isArray(other) || this.length !== other.length) return false;
 
   for (let i = 0; i < this.length; i++) {
     if (Array.isArray(this[i]) !== Array.isArray(other[i])) return false;
