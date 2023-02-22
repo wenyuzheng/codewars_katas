@@ -3,16 +3,15 @@ function nextBigger(n) {
 
   if (digits.length === 1) return -1;
 
-  console.log({ digits });
-
   for (let i = 1; i < digits.length; i++) {
     if (digits[i - 1] > digits[i]) {
-      [digits[i - 1], digits[i]] = [digits[i], digits[i - 1]];
-      for (let j = i - 1; j >= 0; j--) {
-        if (digits[j] > digits[j - 1]) {
-          [digits[j - 1], digits[j]] = [digits[j], digits[j - 1]];
-        }
-      }
+      const arr = digits.slice(0, i);
+      const smallest = arr.filter((e) => e > digits[i])[0];
+      arr.splice(arr.indexOf(smallest), 1, digits[i]);
+      digits[i] = smallest;
+      const newArr = arr.sort((a, b) => b - a);
+      digits.splice(0, i, ...newArr);
+
       return parseInt(digits.reverse().join(""));
     }
   }
