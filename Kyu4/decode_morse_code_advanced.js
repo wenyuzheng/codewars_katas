@@ -70,7 +70,7 @@ decodeMorse = function (morseCode) {
 // console.log(decodeMorse(decodeBits("10001"))); // 'EE'
 // console.log(decodeMorse(decodeBits("10111"))); // 'A'
 
-console.log(decodeBits("001111110011111100"));
+console.log(decodeBits("11111100111111"));
 
 // console.log(decodeMorse(decodeBits("1110111"))); // 'M'
 // console.log(decodeMorse(decodeBits("11111100111111"))); // 'M'
