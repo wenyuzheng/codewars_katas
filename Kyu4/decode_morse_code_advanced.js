@@ -38,37 +38,7 @@ const MORSE_CODE = {
 };
 
 var decodeBits = function (bits) {
-  //   const splitBit = bits.includes("0") ? "1" : "0";
-
-  //   console.log({ splitBit });
-
-  let longestLength = 0;
-
-  bits
-    .split("0")
-    .filter((e) => e !== "")
-    .forEach((e) => (longestLength = Math.max(longestLength, e.length)));
-
-  return longestLength % 3;
-
-  //   return bits
-  //     .split("0000000".repeat(rate))
-  //     .map((word) =>
-  //       word
-  //         .split("000".repeat(rate))
-  //         .map((char) =>
-  //           char
-  //             .split("0".repeat(rate))
-  //             .map((symbol) =>
-  //               symbol
-  //                 .replace("111".repeat(rate), "-")
-  //                 .replace("1".repeat(rate), ".")
-  //             )
-  //             .join("")
-  //         )
-  //         .join(" ")
-  //     )
-  //     .join("   ");
+  return bits.replace(/^0+|0+$/g, "");
 };
 
 decodeMorse = function (morseCode) {
@@ -100,7 +70,7 @@ decodeMorse = function (morseCode) {
 // console.log(decodeMorse(decodeBits("10001"))); // 'EE'
 // console.log(decodeMorse(decodeBits("10111"))); // 'A'
 
-console.log(decodeBits("000000011100000"));
+console.log(decodeBits("001111110011111100"));
 
 // console.log(decodeMorse(decodeBits("1110111"))); // 'M'
 // console.log(decodeMorse(decodeBits("11111100111111"))); // 'M'
