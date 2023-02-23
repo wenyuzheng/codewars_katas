@@ -38,15 +38,26 @@ const MORSE_CODE = {
 };
 
 var decodeBits = function (bits) {
+  let rate = Infinity;
+
+  bits
+    .split("0")
+    .filter((e) => e !== "")
+    .forEach((e) => (rate = Math.min(rate, e.length)));
+
   return bits
-    .split("00000000000000")
+    .split("0000000".repeat(rate))
     .map((word) =>
       word
-        .split("000000")
+        .split("000".repeat(rate))
         .map((char) =>
           char
-            .split("00")
-            .map((symbol) => symbol.replace("111111", "-").replace("11", "."))
+            .split("0".repeat(rate))
+            .map((symbol) =>
+              symbol
+                .replace("111".repeat(rate), "-")
+                .replace("1".repeat(rate), ".")
+            )
             .join("")
         )
         .join(" ")
@@ -77,3 +88,12 @@ console.log(
 
 ("···· · −·−−   ·−−− ··− −·· ·");
 ("[11 00 11 00 11 00 11] 000000 [11] 000000 [111111 00 11 00 111111 00 111111] 00000000000000 [11 00 111111 00 111111 00 111111] 000000 [11 00 11 00 111111] 000000 [111111 00 11 00 11] 000000 [11]");
+
+console.log(decodeMorse(decodeBits("1"))); // 'E'
+console.log(decodeMorse(decodeBits("111"))); // 'E'
+console.log(decodeMorse(decodeBits("1111111"))); // 'E'
+
+console.log(decodeMorse(decodeBits("101"))); // 'I'
+console.log(decodeMorse(decodeBits("10001"))); // 'EE'
+console.log(decodeMorse(decodeBits("10111"))); // 'A'
+// console.log(decodeMorse(decodeBits("1110111"))); // 'M'
