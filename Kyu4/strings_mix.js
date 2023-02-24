@@ -49,16 +49,7 @@ function mix(s1, s2) {
 
   str
     .sort((a, b) => {
-      const order = ["2", "1", "="];
-      const x = a.slice(0, 1);
-      const y = b.slice(0, 1);
-      if (order.indexOf(x) < order.indexOf(y)) {
-        return -1;
-      }
-      if (order.indexOf(x) > order.indexOf(y)) {
-        return 1;
-      }
-      return 0;
+      if (a.slice(0, 1) < b.slice(0, 1)) return -1;
     })
     .sort((a, b) => b.slice(2).length - a.slice(2).length);
 
@@ -78,7 +69,7 @@ const countLetters = (str) => {
 // console.log(countLetters("A aaaa bb c")); // 4 'a', 2 'b', 1 'c'
 // console.log(countLetters("& aaa bbb c d")); // 3 'a', 3 'b', 1 'c', 1 'd'
 
-// console.log(mix("A aaaa bb c", "& aaa bbb c d")); // "1:aaaa/2:bbb"
+console.log(mix("A aaaa bb c", "& aaa bbb c d")); // "1:aaaa/2:bbb"
 console.log(mix("Are they here", "yes, they are here")); // "2:eeeee/2:yy/=:hh/=:rr"
 console.log(
   mix(
@@ -86,3 +77,6 @@ console.log(
     "my friend John has many many friends &"
   )
 ); // "2:nnnnn/1:aaaa/1:hhh/2:mmm/2:yyy/2:dd/2:ff/2:ii/2:rr/=:ee/=:ss"
+
+console.log(mix("looping is fun but dangerous", "less dangerous than coding"));
+// '1:ooo/1:uuu/2:sss/=:nnn/1:ii/2:aa/2:dd/2:ee/=:gg'
