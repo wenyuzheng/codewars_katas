@@ -39,8 +39,8 @@ function parseInt(string) {
 
   let sum = 0;
   for (let i = 0; i < numArr.length; i++) {
-    if (numArr[i] === 100) {
-      sum += numArr[i - 1] * 100;
+    if (numArr[i] === 100 || numArr[i] === 1000) {
+      sum += numArr[i - 1] * numArr[i];
       sum -= numArr[i - 1];
     } else {
       sum += numArr[i];
@@ -50,9 +50,11 @@ function parseInt(string) {
   return sum;
 }
 
-console.log(parseInt("one")); // 1
-console.log(parseInt("twenty")); // 20
-console.log(parseInt("two hundred forty-six")); // 246
+// console.log(parseInt("one")); // 1
+// console.log(parseInt("twenty")); // 20
+// console.log(parseInt("two hundred forty-six")); // 246
 // console.log(
 //   parseInt("seven hundred eighty-three thousand nine hundred and nineteen")
 // ); // 783919
+
+console.log(parseInt("three thousand nine hundred and nineteen")); // 3919
