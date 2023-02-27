@@ -1,4 +1,5 @@
 const numStrings = {
+  zero: 0,
   one: 1,
   two: 2,
   three: 3,
@@ -28,6 +29,7 @@ const numStrings = {
   ninety: 90,
   hundred: 100,
   thousand: 1000,
+  million: 1000000,
 };
 
 function parseInt(string) {
@@ -39,7 +41,9 @@ function parseInt(string) {
 
   let sum = 0;
   for (let i = 0; i < numArr.length; i++) {
-    if (numArr[i] === 100 || numArr[i] === 1000) {
+    if (numArr[i] === 1000) {
+      sum = sum * numArr[i];
+    } else if (numArr[i] === 100) {
       sum += numArr[i - 1] * numArr[i];
       sum -= numArr[i - 1];
     } else {
@@ -50,11 +54,11 @@ function parseInt(string) {
   return sum;
 }
 
-// console.log(parseInt("one")); // 1
-// console.log(parseInt("twenty")); // 20
-// console.log(parseInt("two hundred forty-six")); // 246
-// console.log(
-//   parseInt("seven hundred eighty-three thousand nine hundred and nineteen")
-// ); // 783919
-
+console.log(parseInt("one")); // 1
+console.log(parseInt("twenty")); // 20
+console.log(parseInt("two hundred forty-six")); // 246
 console.log(parseInt("three thousand nine hundred and nineteen")); // 3919
+console.log(parseInt("eighty-three thousand nine hundred and nineteen")); // 83919
+console.log(
+  parseInt("seven hundred eighty-three thousand nine hundred and nineteen")
+); // 783919
