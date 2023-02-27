@@ -37,8 +37,26 @@ const MORSE_CODE = {
   "-----": "0",
 };
 
+const gcd = (a, b) => {
+  if (a == 0) return b;
+  return gcd(b % a, a);
+};
+
+const arrayGcd = (arr) => {
+  let res = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    res = gcd(arr[i], res);
+  }
+  return res;
+};
+
 var decodeBits = function (bits) {
-  return bits.replace(/^0+|0+$/g, "");
+  const cleaned = bits.replace(/^0+|0+$/g, "");
+  const uniqOnesLength = [...new Set(cleaned.split("0"))].map((e) => e.length);
+  const uniqZerosLength = [...new Set(cleaned.split("1"))].map((e) => e.length);
+
+  const rate = arrayGcd([...uniqOnesLength, ...uniqZerosLength]);
+  return rate;
 };
 
 decodeMorse = function (morseCode) {
@@ -70,7 +88,7 @@ decodeMorse = function (morseCode) {
 // console.log(decodeMorse(decodeBits("10001"))); // 'EE'
 // console.log(decodeMorse(decodeBits("10111"))); // 'A'
 
-console.log(decodeBits("11111100111111"));
+console.log(decodeBits("01110"));
 
 // console.log(decodeMorse(decodeBits("1110111"))); // 'M'
 // console.log(decodeMorse(decodeBits("11111100111111"))); // 'M'
