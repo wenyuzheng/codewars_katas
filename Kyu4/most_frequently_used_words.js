@@ -1,6 +1,22 @@
 function topThreeWords(text) {
-  const newText = text.replace(/[^a-z]/g, " ");
-  //   if (newText.length === 0) return [];
+  const strArr = text
+    .split(" ")
+    .map((e) => e.toLowerCase().replace(/[^a-z']|/g, ""))
+    .filter((x) => x !== "'" && x !== "");
+
+  if (strArr.length <= 1) return strArr;
+
+  let strCount = {};
+  strArr.forEach((e) => {
+    strCount[e] = strCount[e] ? strCount[e] + 1 : 1;
+  });
+
+  const sorted = Object.keys(strCount).sort(
+    (a, b) => strCount[b] - strCount[a]
+  );
+
+  if (sorted.length <= 3) return sorted;
+  else return [sorted[0], sorted[1], sorted[2]];
 }
 
 console.log(topThreeWords("a a a  b  c c  d d d d  e e e e e")); // ["e","d","a"]
