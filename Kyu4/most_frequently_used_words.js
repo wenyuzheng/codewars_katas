@@ -15,8 +15,7 @@ function topThreeWords(text) {
     (a, b) => strCount[b] - strCount[a]
   );
 
-  if (sorted.length <= 3) return sorted;
-  else return [sorted[0], sorted[1], sorted[2]];
+  return sorted.slice(0, 3);
 }
 
 console.log(topThreeWords("a a a  b  c c  d d d d  e e e e e")); // ["e","d","a"]
