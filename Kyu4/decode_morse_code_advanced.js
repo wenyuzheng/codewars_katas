@@ -58,23 +58,11 @@ var decodeBits = function (bits) {
   const rate = arrayGcd([...uniqOnesLength, ...uniqZerosLength]);
 
   return cleaned
-    .split("0000000".repeat(rate))
-    .map((word) =>
-      word
-        .split("000".repeat(rate))
-        .map((char) =>
-          char
-            .split("0".repeat(rate))
-            .map((symbol) =>
-              symbol
-                .replace("111".repeat(rate), "-")
-                .replace("1".repeat(rate), ".")
-            )
-            .join("")
-        )
-        .join(" ")
-    )
-    .join("   ");
+    .replace(new RegExp("111".repeat(rate), "g"), "-")
+    .replace(new RegExp("1".repeat(rate), "g"), ".")
+    .replace(new RegExp("0000000".repeat(rate), "g"), "   ")
+    .replace(new RegExp("000".repeat(rate), "g"), " ")
+    .replace(new RegExp("0".repeat(rate), "g"), "");
 };
 
 decodeMorse = function (morseCode) {
