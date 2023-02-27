@@ -34,7 +34,7 @@ const numStrings = {
 
 function parseInt(string) {
   const numArr = string
-    .replace("-", " ")
+    .replace(/-/g, " ")
     .split(" ")
     .filter((x) => x !== "and")
     .map((e) => numStrings[e]);
@@ -54,11 +54,15 @@ function parseInt(string) {
   return sum;
 }
 
-console.log(parseInt("one")); // 1
-console.log(parseInt("twenty")); // 20
-console.log(parseInt("two hundred forty-six")); // 246
-console.log(parseInt("three thousand nine hundred and nineteen")); // 3919
-console.log(parseInt("eighty-three thousand nine hundred and nineteen")); // 83919
-console.log(
-  parseInt("seven hundred eighty-three thousand nine hundred and nineteen")
-); // 783919
+// console.log(parseInt("one")); // 1
+// console.log(parseInt("twenty")); // 20
+// console.log(parseInt("two hundred forty-six")); // 246
+// console.log(parseInt("three thousand nine hundred and nineteen")); // 3919
+// console.log(parseInt("eighty-three thousand nine hundred and nineteen")); // 83919
+// console.log(
+//   parseInt("seven hundred eighty-three thousand nine hundred and nineteen")
+// ); // 783919
+
+// console.log(parseInt("twenty-six thousand three hundred and fifty-nine")); // 26359
+// console.log(parseInt("sixty-eight thousand one hundred fifty-three")); // 68153
+// console.log(parseInt("ninety-six thousand one hundred seventy-three")); // 96173
