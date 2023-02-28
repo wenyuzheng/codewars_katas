@@ -1,18 +1,25 @@
 function isInteresting(number, awesomePhrases) {
   if (number.toString().length < 3) return 0;
 
+  const numberList = [number, number + 1, number + 2];
+
+  for (let i = 0; i < numberList.length; i++) {
+    if (validate(numberList[i], awesomePhrases) === 2) {
+      if (i === 0) return 2;
+      else return 1;
+    }
+  }
+
+  return 0;
+}
+
+const validate = (number, awesomePhrases) => {
+  // Criteria 6: The digits match one of the values in the awesomePhrases array
+  if (awesomePhrases.includes(number)) return 2;
+
   // Criteria 1: Any digit followed by all zeros
   // Criteria 2: Every digit is the same number
   if (number.toString().match(/^[0-9]0+$|^(\d)\1+$/)) return 2;
-
-  // Criteria 6: The digits match one of the values in the awesomePhrases array
-  if (awesomePhrases.includes(number)) return 2;
-  for (let i = 0; i < awesomePhrases.length; i++) {
-    if (awesomePhrases[i] - 1 === number || awesomePhrases[i] - 2 === number) {
-      res = 1;
-      return 1;
-    }
-  }
 
   const digits = number.toString().split("");
 
@@ -22,9 +29,7 @@ function isInteresting(number, awesomePhrases) {
 
   // Criteria 5: The digits are a palindrome
   if (number.toString() === digits.reverse().join("")) return 2;
-
-  return 0;
-}
+};
 
 function isOrdered(numArr, order) {
   const increasingNumOrder = "1234567890";
@@ -47,12 +52,12 @@ function isOrdered(numArr, order) {
 // console.log(isInteresting(10000, [])); // 2
 // console.log(isInteresting(111, [])); // 2
 
-console.log(isInteresting(1234, [1337, 256])); // 2
-console.log(isInteresting(7890, [1337, 256])); // 2
-console.log(isInteresting(78901, [1337, 256])); // 0
-console.log(isInteresting(4321, [1337, 256])); // 2
-console.log(isInteresting(43210, [1337, 256])); // 2
+// console.log(isInteresting(1234, [1337, 256])); // 2
+// console.log(isInteresting(7890, [1337, 256])); // 2
+// console.log(isInteresting(78901, [1337, 256])); // 0
+// console.log(isInteresting(4321, [1337, 256])); // 2
+// console.log(isInteresting(43210, [1337, 256])); // 2
 
-console.log(isInteresting(11208, [1337, 256])); // 0
-console.log(isInteresting(11209, [1337, 256])); // 1
-console.log(isInteresting(11211, [1337, 256])); // 2
+// console.log(isInteresting(11208, [1337, 256])); // 0
+// console.log(isInteresting(11209, [1337, 256])); // 1
+// console.log(isInteresting(11211, [1337, 256])); // 2
