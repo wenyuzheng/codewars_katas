@@ -2,7 +2,8 @@ function isInteresting(number, awesomePhrases) {
   if (number.toString().length < 3) return 0;
 
   // Criteria 1: Any digit followed by all zeros
-  if (number.toString().match(/^[0-9]0+$/)) return 2;
+  // Criteria 2: Every digit is the same number
+  if (number.toString().match(/^[0-9]0+$|^(\d)\1+$/)) return 2;
 
   // Criteria 6: The digits match one of the values in the awesomePhrases array
   if (awesomePhrases.includes(number)) return 2;
@@ -23,6 +24,8 @@ function isInteresting(number, awesomePhrases) {
 // console.log(isInteresting(1337, [1337, 256])); // 2
 
 console.log(isInteresting(10000, [])); // 2
+console.log(isInteresting(111, [])); // 2
+
 console.log(isInteresting(11208, [1337, 256])); // 0
 console.log(isInteresting(11209, [1337, 256])); // 1
 console.log(isInteresting(11211, [1337, 256])); // 2
