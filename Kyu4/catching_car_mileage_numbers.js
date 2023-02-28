@@ -14,17 +14,44 @@ function isInteresting(number, awesomePhrases) {
     }
   }
 
-  //   return number.toString().split("");
+  const digits = number.toString().split("");
+
+  // Criteria 3,4: The digits are sequential
+  if (isOrdered(digits, "+") === true) return 2;
+  if (isOrdered(digits, "-") === true) return 2;
+
+  // Criteria 5: The digits are a palindrome
+  if (number.toString() === digits.reverse().join("")) return 2;
 
   return 0;
+}
+
+function isOrdered(numArr, order) {
+  const increasingNumOrder = "1234567890";
+
+  for (let i = 0; i < numArr.length - 1; i++) {
+    const increasingOrder =
+      increasingNumOrder.indexOf(numArr[i]) >=
+      increasingNumOrder.indexOf(numArr[i + 1]);
+    const decreasingOrder = parseInt(numArr[i]) <= parseInt(numArr[i + 1]);
+
+    if (order === "+" ? increasingOrder : decreasingOrder) return false;
+  }
+  return true;
 }
 
 // console.log(isInteresting(3, [1337, 256])); // 0
 // console.log(isInteresting(1336, [1337, 256])); // 1
 // console.log(isInteresting(1337, [1337, 256])); // 2
 
-console.log(isInteresting(10000, [])); // 2
-console.log(isInteresting(111, [])); // 2
+// console.log(isInteresting(10000, [])); // 2
+// console.log(isInteresting(111, [])); // 2
+
+console.log(isInteresting(1234, [1337, 256])); // 2
+console.log(isInteresting(7890, [1337, 256])); // 2
+console.log(isInteresting(78901, [1337, 256])); // 0
+console.log(isInteresting(4321, [1337, 256])); // 2
+console.log(isInteresting(43210, [1337, 256])); // 2
 
 console.log(isInteresting(11208, [1337, 256])); // 0
 console.log(isInteresting(11209, [1337, 256])); // 1
