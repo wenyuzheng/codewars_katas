@@ -1,8 +1,10 @@
 function treeByLevels(rootNode) {
   if (!rootNode) return [];
 
-  let res = [rootNode.value];
-  let nodes = [rootNode.left, rootNode.right];
+  let res = [];
+  let nodes = [rootNode];
+
+  console.log({ nodes });
 
   while (nodes.length !== 0) {
     const curr = nodes.shift();
@@ -26,12 +28,14 @@ class Node {
   }
 }
 
-console.log(
-  treeByLevels(
-    new Node(
-      2,
-      new Node(8, new Node(1), new Node(3)),
-      new Node(9, new Node(4), new Node(5))
-    )
-  )
-); // [2,8,9,1,3,4,5]
+// console.log(
+//   treeByLevels(
+//     new Node(
+//       2,
+//       new Node(8, new Node(1), new Node(3)),
+//       new Node(9, new Node(4), new Node(5))
+//     )
+//   )
+// ); // [2,8,9,1,3,4,5]
+
+console.log(treeByLevels(new Node(2, null, null)));
