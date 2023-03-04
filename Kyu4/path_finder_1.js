@@ -34,16 +34,6 @@ function pathFinder(maze) {
   return false;
 }
 
-function pathFinder(maze) {
-  let mazeArr = maze.split("\n").map((e) => e.split(""));
-  let stack = [[0, 0]];
-
-  while (stack.length !== 0) {
-    const [y, x] = stack.shift();
-    mazeArr[y][x] = "v";
-  }
-}
-
 console.log(
   pathFinder(
     `.W.
@@ -52,32 +42,32 @@ console.log(
   )
 ); // true
 
-// console.log(
-//   pathFinder(
-//     `.W.
-// .W.
-// W..`
-//   )
-// ); // false
+console.log(
+  pathFinder(
+    `.W.
+.W.
+W..`
+  )
+); // false
 
-// console.log(
-//   pathFinder(
-//     `......
-// ......
-// ......
-// ......
-// ......
-// ......`
-//   )
-// ); // true
+console.log(
+  pathFinder(
+    `......
+......
+......
+......
+......
+......`
+  )
+); // true
 
-// console.log(
-//   pathFinder(
-//     `......
-// ......
-// ......
-// ......
-// .....W
-// ....W.`
-//   )
-// ); // false
+console.log(
+  pathFinder(
+    `......
+......
+......
+......
+.....W
+....W.`
+  )
+); // false
