@@ -3,7 +3,8 @@ function pathFinder(maze) {
   let stack = [[0, 0]];
 
   while (stack.length !== 0) {
-    const [y, x] = stack.shift();
+    const [y, x] = stack.pop(); // DFS
+    // const [y, x] = stack.shift(); // BFS
 
     // Reach exit
     if (x === mazeArr.length - 1 && y === mazeArr.length - 1) {
@@ -33,6 +34,16 @@ function pathFinder(maze) {
   return false;
 }
 
+function pathFinder(maze) {
+  let mazeArr = maze.split("\n").map((e) => e.split(""));
+  let stack = [[0, 0]];
+
+  while (stack.length !== 0) {
+    const [y, x] = stack.shift();
+    mazeArr[y][x] = "v";
+  }
+}
+
 console.log(
   pathFinder(
     `.W.
@@ -41,32 +52,32 @@ console.log(
   )
 ); // true
 
-console.log(
-  pathFinder(
-    `.W.
-.W.
-W..`
-  )
-); // false
+// console.log(
+//   pathFinder(
+//     `.W.
+// .W.
+// W..`
+//   )
+// ); // false
 
-console.log(
-  pathFinder(
-    `......
-......
-......
-......
-......
-......`
-  )
-); // true
+// console.log(
+//   pathFinder(
+//     `......
+// ......
+// ......
+// ......
+// ......
+// ......`
+//   )
+// ); // true
 
-console.log(
-  pathFinder(
-    `......
-......
-......
-......
-.....W
-....W.`
-  )
-); // false
+// console.log(
+//   pathFinder(
+//     `......
+// ......
+// ......
+// ......
+// .....W
+// ....W.`
+//   )
+// ); // false
