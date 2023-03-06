@@ -4,9 +4,9 @@ function bowlingScore(frames) {
   let score = 0;
 
   for (let i = 0; i < framesArr.length; i++) {
-    // if (framesArr[i] === "X") {
-    //   score += 10 + framesArr[i + 1];
-    // }
+    if (framesArr[i] === "X") {
+      score += 10 + framesArr[i + 1];
+    }
     // if (framesArr[i].includes("/")) {
     //   score += 10 + parseInt(framesArr[i + 1][0]);
     // }
