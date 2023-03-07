@@ -27,24 +27,15 @@ const outerRingPossibilities = (clues) => {
     [0, 0, 0, 0],
     [0, 0, 0, 0],
   ];
+};
 
-  for (let i = 0; i < clues.length; i++) {
-    if (clues[i] === 4) {
-      if (i <= 3) {
-        puzzle[0][i] = 1;
-        puzzle[1][i] = 2;
-        puzzle[2][i] = 3;
-        puzzle[3][i] = 4;
-      } else if (i > 3 && i <= 7) {
-        puzzle[i % 4][3] = 1;
-        puzzle[i % 4][2] = 2;
-        puzzle[i % 4][1] = 3;
-        puzzle[i % 4][0] = 4;
-      } else if (i > 7 && i <= 11) {
-        puzzle[3][i] = 4;
-      } else if (i > 11 && i <= 15) {
-        // puzzle[i % 4][1] = 4;
-      }
+const getPossibleValues = (puzzle, clue, i, j) => {
+  let values = [];
+  if (clue === 1) {
+    return [4];
+  } else if (clue === 2) {
+    let possibleValues = [1, 2, 3];
+    if (notInRow(puzzle, i, j) && notInColumn(puzzle, i, j)) {
     }
   }
 };
