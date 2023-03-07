@@ -35,8 +35,20 @@ const getPossibleValues = (puzzle, clue, i, j) => {
     return [4];
   } else if (clue === 2) {
     let possibleValues = [1, 2, 3];
-    if (notInRow(puzzle, i, j) && notInColumn(puzzle, i, j)) {
-    }
+    possibleValues.forEach((val) => {
+      if (notInRow(puzzle, i, j) && notInColumn(puzzle, i, j)) {
+        // && only showing 2 blocks
+        values.push(val);
+      }
+    });
+  } else if (clue === 3) {
+    let possibleValues = [1, 2];
+    possibleValues.forEach((val) => {
+      if (notInRow(puzzle, i, j) && notInColumn(puzzle, i, j)) {
+        // && only showing 3 blocks
+        values.push(val);
+      }
+    });
   }
 };
 
