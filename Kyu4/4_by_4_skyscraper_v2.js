@@ -11,9 +11,9 @@ const number_of_views = (view) => {
   return selected.length;
 };
 
-console.log(number_of_views([1, 2, 3, 4, 3, 3, 5])); // 5
-console.log(number_of_views([4, 3, 2, 1])); // 1
-console.log(number_of_views([2, 3, 4, 1])); // 3
+// console.log(number_of_views([1, 2, 3, 4, 3, 3, 5])); // 5
+// console.log(number_of_views([4, 3, 2, 1])); // 1
+// console.log(number_of_views([2, 3, 4, 1])); // 3
 
 const getNorthView = (puzzle, j) => puzzle.map((e) => e[j]);
 
@@ -45,6 +45,39 @@ const satisfyEast = (puzzle, requirement) => {
   return true;
 };
 
+const getSouthView = (puzzle, j) => puzzle.map((e) => e[j]).reverse();
+
+const satisfySouth = (puzzle, requirement) => {
+  const southReq = requirement[2];
+  let columnJ = 3;
+  for (let j = 0; j < 4; j++) {
+    const view = getSouthView(puzzle, columnJ);
+    columnJ--;
+    if (southReq[j] === 0) continue;
+    if (number_of_views(view) !== southReq[j]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+const getWestView = (puzzle, i) => puzzle[i];
+
+const satisfyWest = (puzzle, requirement) => {
+  const westReq = requirement[3];
+  let rowI = 3;
+  for (let i = 0; i < 4; i++) {
+    const view = getWestView(puzzle, rowI);
+    rowI--;
+    if (westReq[i] === 0) continue;
+    if (number_of_views(view) !== westReq[i]) {
+      return false;
+    }
+  }
+
+  return true;
+};
 const solve = (puzzle) => {
   const empty = getNextEmpty(puzzle);
 
@@ -78,15 +111,16 @@ const requirement = [
 ];
 
 const puzzle_1 = [
-  [1, 2, 1, 1],
+  [1, 4, 1, 1],
   [2, 3, 2, 2],
-  [3, 1, 4, 0],
-  [4, 4, 2, 1],
+  [3, 4, 4, 0],
+  [2, 1, 2, 3],
 ];
 
 // console.log(satisfy_north(puzzle_1, requirement));
-
-console.log(satisfyEast(puzzle_1, requirement));
+// console.log(satisfyEast(puzzle_1, requirement));
+// console.log(satisfySouth(puzzle_1, requirement));
+console.log(satisfyWest(puzzle_1, requirement));
 
 // function solvePuzzle(clues) {}
 
