@@ -78,6 +78,51 @@ const satisfyWest = (puzzle, requirement) => {
 
   return true;
 };
+
+const satisfyAll = (puzzle, requirement) => {
+  return (
+    satisfy_north(puzzle, requirement) &&
+    satisfyEast(puzzle, requirement) &&
+    satisfySouth(puzzle, requirement) &&
+    satisfyWest(puzzle, requirement)
+  );
+};
+
+const notInRow = (puzzle, i, k) => {
+  return !puzzle[i].includes(k);
+};
+
+const notInColumn = (puzzle, j, k) => {
+  const column = puzzle.map((e) => e[j]);
+  return !column.includes(k);
+};
+
+const getPossibleValues = (puzzle, i, j) => {
+  let result = [];
+
+  for (let k = 1; k <= 9; k++) {
+    if (
+      notInRow(puzzle, i, k) &&
+      notInColumn(puzzle, j, k) &&
+      notInSquare(puzzle, i, j, k)
+    ) {
+      result.push(k);
+    }
+  }
+
+  return result;
+};
+
+const getNextEmpty = (puzzle) => {
+  for (let i = 0; i < puzzle.length; i++) {
+    for (let j = 0; j < puzzle.length; j++) {
+      if (puzzle[i][j] === 0) return [i, j];
+    }
+  }
+
+  return true;
+};
+
 const solve = (puzzle) => {
   const empty = getNextEmpty(puzzle);
 
