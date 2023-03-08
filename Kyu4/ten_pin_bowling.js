@@ -5,13 +5,23 @@ function bowlingScore(frames) {
 
   for (let i = 0; i < framesArr.length; i++) {
     if (framesArr[i] === "X") {
-      score += 10 + getFrameScore(framesArr[i + 1]);
+      if (framesArr[i + 1].length === 1) {
+        const rollsScores =
+          framesArr[i + 1].length === 1
+            ? getFrameScore(framesArr[i + 1]) +
+              (framesArr[i + 2][0] === "X" ? 10 : parseInt(framesArr[i + 2][0]))
+            : getFrameScore(framesArr[i + 1]);
+
+        console.log({ rollsScores });
+        score += 10 + rollsScores;
+      }
     }
     //  else if (framesArr[i].includes("/")) {}
     //   score += 10 + getFrameScore(framesArr[i + 1]);
     // }
-
-    score += getFrameScore(framesArr[i]);
+    else {
+      score += getFrameScore(framesArr[i]);
+    }
 
     console.log({ score });
   }
@@ -26,5 +36,5 @@ const getFrameScore = (frame) => {
 };
 
 // console.log(bowlingScore("11 11 11 11 11 11 11 11 11 11")); // 20
-console.log(bowlingScore("X X X X X X X X X 11")); // 300
-console.log(bowlingScore("X X 9/ 80 X X 90 8/ 7/ 44")); // 171
+console.log(bowlingScore("X X X X X X X X X XXX")); // 300
+// console.log(bowlingScore("X X 9/ 80 X X 90 8/ 7/ 44")); // 171
