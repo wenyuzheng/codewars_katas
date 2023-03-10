@@ -11,10 +11,6 @@ const number_of_views = (view) => {
   return selected.length;
 };
 
-// console.log(number_of_views([1, 2, 3, 4, 3, 3, 5])); // 5
-// console.log(number_of_views([4, 3, 2, 1])); // 1
-// console.log(number_of_views([2, 3, 4, 1])); // 3
-
 const getNorthView = (puzzle, j) => puzzle.map((e) => e[j]);
 
 const satisfy_north = (puzzle, requirement) => {
@@ -100,12 +96,8 @@ const notInColumn = (puzzle, j, k) => {
 const getPossibleValues = (puzzle, i, j) => {
   let result = [];
 
-  for (let k = 1; k <= 9; k++) {
-    if (
-      notInRow(puzzle, i, k) &&
-      notInColumn(puzzle, j, k) &&
-      notInSquare(puzzle, i, j, k)
-    ) {
+  for (let k = 1; k <= 4; k++) {
+    if (notInRow(puzzle, i, k) && notInColumn(puzzle, j, k)) {
       result.push(k);
     }
   }
@@ -123,20 +115,20 @@ const getNextEmpty = (puzzle) => {
   return true;
 };
 
-const solve = (puzzle) => {
+const solve = (puzzle, requirement) => {
   const empty = getNextEmpty(puzzle);
 
   if (empty === true) {
     if (satisfyAll(puzzle, requirement) === true) return puzzle;
     else return false;
   }
-  const [i, j] = empty;
 
+  const [i, j] = empty;
   const possibilities = getPossibleValues(puzzle, i, j);
 
   for (let k = 0; k < possibilities.length; k++) {
     puzzle[i][j] = possibilities[k];
-    const attemptedRes = solve(puzzle);
+    const attemptedRes = solve(puzzle, requirement);
 
     if (attemptedRes !== false) {
       return puzzle;
@@ -148,31 +140,18 @@ const solve = (puzzle) => {
   return false;
 };
 
-const requirement = [
-  [4, 1, 3, 0],
-  [2, 2, 0, 1],
-  [1, 0, 4, 1],
-  [1, 2, 0, 2],
-];
+export const solvePuzzle = (clues) => {
+  const requirement = [];
+  for (let i = 0; i < 4; i++) {
+    requirement.push(clues.splice(0, 4));
+  }
 
-const puzzle_1 = [
-  [1, 4, 1, 1],
-  [2, 3, 2, 2],
-  [3, 4, 4, 0],
-  [2, 1, 2, 3],
-];
+  const puzzle = [
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+  ];
 
-// console.log(satisfy_north(puzzle_1, requirement));
-// console.log(satisfyEast(puzzle_1, requirement));
-// console.log(satisfySouth(puzzle_1, requirement));
-console.log(satisfyWest(puzzle_1, requirement));
-
-// function solvePuzzle(clues) {}
-
-// console.log(solvePuzzle([2, 2, 1, 3, 2, 2, 3, 1, 1, 2, 2, 3, 3, 2, 1, 3]));
-//  [
-//    [1, 3, 4, 2],
-//    [4, 2, 1, 3],
-//    [3, 4, 2, 1],
-//    [2, 1, 3, 4],
-//  ];
+  return solve(puzzle, requirement);
+};
