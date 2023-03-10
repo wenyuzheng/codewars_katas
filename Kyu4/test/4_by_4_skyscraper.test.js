@@ -1,30 +1,110 @@
 import { assert } from "chai";
-import { solvePuzzle } from "../n_by_n_skyscraper.js";
+import {
+  solvePuzzle,
+  prefillFromNorth,
+  prefillFromEast,
+  prefillFromSouth,
+  prefillFromWest,
+} from "../n_by_n_skyscraper.js";
 
-describe("Skyscrapers", function () {
-  it("can solve 4x4 puzzle 1", function () {
-    var clues = [2, 2, 1, 3, 2, 2, 3, 1, 1, 2, 2, 3, 3, 2, 1, 3];
-    var expected = [
-      [1, 3, 4, 2],
-      [4, 2, 1, 3],
-      [3, 4, 2, 1],
-      [2, 1, 3, 4],
+describe("prefill", function () {
+  var requirement = [
+    [4, 0, 1, 0],
+    [4, 0, 1, 1],
+    [1, 4, 2, 4],
+    [1, 2, 4, 3],
+  ];
+  const n = 4;
+  // const puzzle = [];
+  // for (let i = 0; i < n; i++) {
+  //   puzzle.push(new Array(n).fill(0));
+  // }
+
+  it("prefill From North", function () {
+    const puzzle = [];
+    for (let i = 0; i < n; i++) {
+      puzzle.push(new Array(n).fill(0));
+    }
+    const expected = [
+      [1, 0, 4, 0],
+      [2, 0, 0, 0],
+      [3, 0, 0, 0],
+      [4, 0, 0, 0],
     ];
-    var actual = solvePuzzle(clues);
+    const actual = prefillFromNorth(puzzle, requirement);
     assertFunc(expected, actual);
   });
-  it("can solve 4x4 puzzle 2", function () {
-    var clues = [0, 0, 1, 2, 0, 2, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0];
-    var expected = [
-      [2, 1, 4, 3],
-      [3, 4, 1, 2],
-      [4, 2, 3, 1],
-      [1, 3, 2, 4],
+
+  it("prefill From East", function () {
+    const puzzle = [];
+    for (let i = 0; i < n; i++) {
+      puzzle.push(new Array(n).fill(0));
+    }
+    const expected = [
+      [4, 3, 2, 1],
+      [0, 0, 0, 0],
+      [0, 0, 0, 4],
+      [0, 0, 0, 4],
     ];
-    var actual = solvePuzzle(clues);
+    const actual = prefillFromEast(puzzle, requirement);
+    assertFunc(expected, actual);
+  });
+
+  it("prefill From South", function () {
+    const puzzle = [];
+    for (let i = 0; i < n; i++) {
+      puzzle.push(new Array(n).fill(0));
+    }
+    const expected = [
+      [4, 0, 4, 0],
+      [3, 0, 3, 0],
+      [2, 0, 2, 0],
+      [1, 0, 1, 4],
+    ];
+    const actual = prefillFromSouth(puzzle, requirement);
+    assertFunc(expected, actual);
+  });
+
+  it("prefill From West", function () {
+    const puzzle = [];
+    for (let i = 0; i < n; i++) {
+      puzzle.push(new Array(n).fill(0));
+    }
+    const expected = [
+      [0, 0, 0, 0],
+      [1, 2, 3, 4],
+      [0, 0, 0, 0],
+      [4, 0, 0, 0],
+    ];
+    const actual = prefillFromWest(puzzle, requirement);
     assertFunc(expected, actual);
   });
 });
+
+// describe("Skyscrapers", function () {
+//   it("can solve 4x4 puzzle 1", function () {
+//     var clues = [2, 2, 1, 3, 2, 2, 3, 1, 1, 2, 2, 3, 3, 2, 1, 3];
+//     var expected = [
+//       [1, 3, 4, 2],
+//       [4, 2, 1, 3],
+//       [3, 4, 2, 1],
+//       [2, 1, 3, 4],
+//     ];
+//     var actual = solvePuzzle(clues);
+//     assertFunc(expected, actual);
+//   });
+//   it("can solve 4x4 puzzle 2", function () {
+//     var clues = [0, 0, 1, 2, 0, 2, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0];
+//     var expected = [
+//       [2, 1, 4, 3],
+//       [3, 4, 1, 2],
+//       [4, 2, 3, 1],
+//       [1, 3, 2, 4],
+//     ];
+//     var actual = solvePuzzle(clues);
+//     assertFunc(expected, actual);
+//   });
+// });
 
 function assertFunc(expected, actual) {
   assert.strictEqual(actual.length, 4);

@@ -115,6 +115,74 @@ const getNextEmpty = (puzzle) => {
   return true;
 };
 
+export const prefillFromNorth = (puzzle, requirement) => {
+  const northReq = requirement[0];
+  for (let j = 0; j < northReq.length; j++) {
+    if (northReq[j] === 4) {
+      puzzle[0][j] = 1;
+      puzzle[1][j] = 2;
+      puzzle[2][j] = 3;
+      puzzle[3][j] = 4;
+    } else if (northReq[j] === 1) {
+      puzzle[0][j] = 4;
+    }
+  }
+
+  return puzzle;
+};
+
+export const prefillFromEast = (puzzle, requirement) => {
+  const eastReq = requirement[1];
+  for (let i = 0; i < eastReq.length; i++) {
+    if (eastReq[i] === 4) {
+      puzzle[i][3] = 1;
+      puzzle[i][2] = 2;
+      puzzle[i][1] = 3;
+      puzzle[i][0] = 4;
+    } else if (eastReq[i] === 1) {
+      puzzle[i][3] = 4;
+    }
+  }
+
+  return puzzle;
+};
+
+export const prefillFromSouth = (puzzle, requirement) => {
+  const southReq = requirement[2];
+  let columnJ = 3;
+  for (let j = 0; j < southReq.length; j++) {
+    if (southReq[j] === 4) {
+      puzzle[3][columnJ] = 1;
+      puzzle[2][columnJ] = 2;
+      puzzle[1][columnJ] = 3;
+      puzzle[0][columnJ] = 4;
+    } else if (southReq[j] === 1) {
+      puzzle[3][columnJ] = 4;
+    }
+    columnJ--;
+  }
+
+  return puzzle;
+};
+
+export const prefillFromWest = (puzzle, requirement) => {
+  const westReq = requirement[3];
+  let rowI = 3;
+  for (let i = 0; i < westReq.length; i++) {
+    if (westReq[i] === 4) {
+      puzzle[rowI][0] = 1;
+      puzzle[rowI][1] = 2;
+      puzzle[rowI][2] = 3;
+      puzzle[rowI][3] = 4;
+    } else if (westReq[i] === 1) {
+      puzzle[rowI][0] = 4;
+    }
+    rowI--;
+  }
+
+  return puzzle;
+};
+
 const solve = (puzzle, requirement) => {
   const empty = getNextEmpty(puzzle);
 
