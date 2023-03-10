@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { solvePuzzle } from "../4_by_4_skyscraper_v2.js";
+import { solvePuzzle } from "../n_by_n_skyscraper.js";
 
 describe("Skyscrapers", function () {
   it("can solve 4x4 puzzle 1", function () {
