@@ -1,18 +1,11 @@
 import { assert } from "chai";
-import {
-  solvePuzzle,
-  prefillFromNorth,
-  prefillFromEast,
-  prefillFromSouth,
-  prefillFromWest,
-  prefill,
-} from "../n_by_n_skyscraper.js";
+import { solvePuzzle, prefill } from "../n_by_n_skyscraper.js";
 
 describe("prefill", function () {
   var requirement = [
-    [4, 1, 1, 0],
-    [2, 0, 1, 2],
-    [0, 4, 2, 3],
+    [4, 1, 1, 2],
+    [2, 0, 3, 2],
+    [3, 4, 2, 3],
     [1, 2, 3, 3],
   ];
   const n = 4;
@@ -28,8 +21,8 @@ describe("prefill", function () {
     }
     const expected = [
       [1, 4, 4, 0],
-      [2, 0, 3, 0],
-      [3, 0, 2, 4],
+      [2, 0, 3, 4],
+      [3, 4, 2, 0],
       [4, 3, 1, 3],
     ];
 
