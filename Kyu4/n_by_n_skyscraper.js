@@ -115,6 +115,35 @@ const getNextEmpty = (puzzle) => {
   return true;
 };
 
+export const prefill = (puzzle, requirement) => {
+  const n = requirement.length;
+
+  const nsReq = [];
+  for (let j = 0; j < requirement.length; j++) {
+    nsReq.push([requirement[0][j], requirement[2][n - 1 - j]]);
+  }
+
+  for (let k = 0; k < nsReq.length; k++) {
+    console.log(nsReq[k]);
+    if (nsReq[k][0] === 1 && nsReq[k][1] === 2) {
+      puzzle[0][k] = 4;
+      puzzle[3][k] = 3;
+    }
+    if (nsReq[k][0] === 2 && nsReq[k][1] === 1) {
+      puzzle[0][k] = 3;
+      puzzle[3][k] = 4;
+    }
+    // if (nsReq[k])
+  }
+
+  console.log({ puzzle });
+
+  const weReq = [];
+  for (let i = 0; i < requirement.length; i++) {
+    weReq.push([requirement[1][i], requirement[3][n - 1 - i]]);
+  }
+};
+
 export const prefillFromNorth = (puzzle, requirement) => {
   const northReq = requirement[0];
   for (let j = 0; j < northReq.length; j++) {
