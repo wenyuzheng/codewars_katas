@@ -124,7 +124,6 @@ export const prefill = (puzzle, requirement) => {
   }
 
   for (let k = 0; k < nsReq.length; k++) {
-    console.log(nsReq[k]);
     if (nsReq[k][0] === 1 && nsReq[k][1] === 2) {
       puzzle[0][k] = 4;
       puzzle[3][k] = 3;
@@ -133,15 +132,62 @@ export const prefill = (puzzle, requirement) => {
       puzzle[0][k] = 3;
       puzzle[3][k] = 4;
     }
-    // if (nsReq[k])
+    if (nsReq[k][0] === 4) {
+      puzzle[0][k] = 1;
+      puzzle[1][k] = 2;
+      puzzle[2][k] = 3;
+      puzzle[3][k] = 4;
+    }
+    if (nsReq[k][0] === 1) {
+      puzzle[0][k] = 4;
+    }
+    if (nsReq[k][1] === 4) {
+      puzzle[3][k] = 1;
+      puzzle[2][k] = 2;
+      puzzle[1][k] = 3;
+      puzzle[0][k] = 4;
+    }
+    if (nsReq[k][1] === 1) {
+      puzzle[3][k] = 4;
+    }
   }
-
-  console.log({ puzzle });
 
   const weReq = [];
   for (let i = 0; i < requirement.length; i++) {
-    weReq.push([requirement[1][i], requirement[3][n - 1 - i]]);
+    weReq.push([requirement[3][n - 1 - i], requirement[1][i]]);
   }
+
+  for (let z = 0; z < weReq.length; z++) {
+    console.log(weReq[z]);
+    if (weReq[z][0] === 1 && weReq[z][1] === 2) {
+      puzzle[z][0] = 4;
+      puzzle[z][3] = 3;
+    }
+    if (weReq[z][0] === 2 && weReq[z][1] === 1) {
+      puzzle[z][0] = 3;
+      puzzle[z][3] = 4;
+    }
+    if (weReq[z][0] === 4) {
+      puzzle[z][0] = 1;
+      puzzle[z][1] = 2;
+      puzzle[z][2] = 3;
+      puzzle[z][3] = 4;
+    }
+    if (weReq[z][0] === 1) {
+      puzzle[z][0] = 4;
+    }
+    if (weReq[z][1] === 4) {
+      puzzle[z][3] = 1;
+      puzzle[z][2] = 2;
+      puzzle[z][1] = 3;
+      puzzle[z][0] = 4;
+    }
+    if (weReq[z][1] === 1) {
+      puzzle[z][3] = 4;
+    }
+  }
+
+  return puzzle;
 };
 
 export const prefillFromNorth = (puzzle, requirement) => {

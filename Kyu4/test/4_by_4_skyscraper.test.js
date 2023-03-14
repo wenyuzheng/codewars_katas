@@ -11,9 +11,9 @@ import {
 describe("prefill", function () {
   var requirement = [
     [4, 1, 1, 0],
-    [4, 0, 1, 1],
-    [1, 4, 2, 4],
-    [1, 2, 4, 3],
+    [2, 0, 1, 2],
+    [0, 4, 2, 3],
+    [1, 2, 3, 3],
   ];
   const n = 4;
   // const puzzle = [];
@@ -26,16 +26,16 @@ describe("prefill", function () {
     for (let i = 0; i < n; i++) {
       puzzle.push(new Array(n).fill(0));
     }
-    // const expected = [
-    //   [0, 0, 0, 0],
-    //   [1, 2, 3, 4],
-    //   [0, 0, 0, 0],
-    //   [4, 0, 0, 0],
-    // ];
+    const expected = [
+      [1, 4, 4, 0],
+      [2, 0, 3, 0],
+      [3, 0, 2, 4],
+      [4, 3, 1, 3],
+    ];
 
     const actual = prefill(puzzle, requirement);
     console.log({ actual });
-    // assertFunc(expected, actual);
+    assertFunc(expected, actual);
   });
 
   // it("prefill From North", function () {
