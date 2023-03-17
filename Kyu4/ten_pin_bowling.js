@@ -11,27 +11,44 @@ function bowlingScore(frames) {
     } else if (framesArr[i].length === 3) {
       score += getThreeRollsScore(framesArr[i]);
     } else {
-      score += getFrameScore(framesArr[i]);
+      score += getRollScore(framesArr[i][0]) + getRollScore(framesArr[i][1]);
     }
   }
 
   return score;
 }
 
-const getScore = (framesArr, index, count) => {};
+const getScore = (framesArr, index, count) => {
+  const roll1 = getRollScore(framesArr[index + 1][0]);
+  const roll2 = getRollScore(framesArr[index + 1][1]);
 
-const getFrameScore = (frame) => {
-  if (frame === "X") return 10;
-  else if (frame.includes("/")) return 10;
-  else return frame.split("").reduce((sum, roll) => (sum += parseInt(roll)), 0);
+  if (framesArr[index + 1].length === 1) {
+    return count === 1 ? roll1 : roll1 + getRollScore(framesArr[index + 2][0]);
+  }
+  return count === 1
+    ? roll1
+    : roll2 === 10 && roll1 !== 10
+    ? roll2
+    : roll2 + roll1;
 };
 
-// const getNextFrameScore = (frame, count) => {
-//   if (frame === "X") return 10;
-//   else if (frame.includes("/")) return 10;
-//   else return frame.split("").reduce((sum, roll) => (sum += parseInt(roll)), 0);
-// };
+const getRollScore = (roll) => {
+  if (roll === "X" || roll === "/") return 10;
+  else return parseInt(roll);
+};
+
+const getThreeRollsScore = (frame) => {
+  var third = getRollScore(frame[2]);
+  var second = getRollScore(frame[1]);
+  var first = getRollScore(frame[0]);
+
+  return third === 10 && second !== 10
+    ? third + first
+    : second === 10 && first !== 10
+    ? third + second
+    : first + second + third;
+};
 
 console.log(bowlingScore("11 11 11 11 11 11 11 11 11 11")); // 20
 console.log(bowlingScore("X X X X X X X X X XXX")); // 300
-// console.log(bowlingScore("X X 9/ 80 X X 90 8/ 7/ 44")); // 171
+console.log(bowlingScore("X X 9/ 80 X X 90 8/ 7/ 44")); // 171
