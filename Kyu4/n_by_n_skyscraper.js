@@ -115,7 +115,7 @@ const getNextEmpty = (puzzle) => {
   return true;
 };
 
-export const prefill = (puzzle, requirement) => {
+const prefill = (puzzle, requirement) => {
   const n = requirement.length;
 
   const nsReq = [];
@@ -205,6 +205,8 @@ export const prefill = (puzzle, requirement) => {
   return puzzle;
 };
 
+const couldViewBeSatisfied = (partialView, twoSideReq) => {};
+
 const solve = (puzzle, requirement) => {
   const empty = getNextEmpty(puzzle);
 
@@ -230,7 +232,7 @@ const solve = (puzzle, requirement) => {
   return false;
 };
 
-export const solvePuzzle = (clues, n = 4) => {
+const solvePuzzle = (clues, n = 4) => {
   const requirement = [];
   while (clues.length !== 0) {
     requirement.push(clues.splice(0, n));
@@ -245,3 +247,5 @@ export const solvePuzzle = (clues, n = 4) => {
 
   return solve(prefilled, requirement);
 };
+
+module.exports = { couldViewBeSatisfied, prefill, solvePuzzle };

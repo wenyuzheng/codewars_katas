@@ -5,5 +5,10 @@
     "mocha": "^10.2.0"
   },
   "type": "module",
-  "scripts":{"test": "mocha "}
+  "scripts": {
+    "test": "jest "
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }

@@ -35,6 +35,12 @@ const getFrameScore = (frame) => {
   else return frame.split("").reduce((sum, roll) => (sum += parseInt(roll)), 0);
 };
 
+const getNextFrameScore = (frame, count) => {
+  if (frame === "X") return 10;
+  else if (frame.includes("/")) return 10;
+  else return frame.split("").reduce((sum, roll) => (sum += parseInt(roll)), 0);
+};
+
 // console.log(bowlingScore("11 11 11 11 11 11 11 11 11 11")); // 20
 console.log(bowlingScore("X X X X X X X X X XXX")); // 300
 // console.log(bowlingScore("X X 9/ 80 X X 90 8/ 7/ 44")); // 171
