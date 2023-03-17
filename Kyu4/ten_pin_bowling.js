@@ -7,7 +7,7 @@ function bowlingScore(frames) {
     if (framesArr[i] === "X" && i < 9) {
       score += 10 + getScore(framesArr, i, 2);
     } else if (framesArr[i].includes("/")) {
-      score += 10 + getScore(framesArr, i, 1 && i < 9);
+      score += 10 + getScore(framesArr, i, 1);
     } else if (framesArr[i].length === 3) {
       score += getThreeRollsScore(framesArr[i]);
     } else {
