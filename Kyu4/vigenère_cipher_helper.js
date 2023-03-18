@@ -6,11 +6,11 @@ export function VigenèreCipher(key, abc) {
     let keyIndex = 0;
 
     const encodedChars = chars.map((char) => {
-      if (!abc.includes(char)) return char;
-
       const newIndex =
         (abc.indexOf(key[keyIndex]) + abc.indexOf(char)) % abcLength;
       keyIndex = keyIndex === key.length - 1 ? 0 : keyIndex + 1;
+
+      if (!abc.includes(char)) return char;
       return abc[newIndex];
     });
 
@@ -23,12 +23,12 @@ export function VigenèreCipher(key, abc) {
     let keyIndex = 0;
 
     const decodedChars = chars.map((char) => {
-      if (!abc.includes(char)) return char;
-
       const newIndex =
         (abc.indexOf(char) - abc.indexOf(key[keyIndex]) + abcLength) %
         abcLength;
       keyIndex = keyIndex === key.length - 1 ? 0 : keyIndex + 1;
+
+      if (!abc.includes(char)) return char;
       return abc[newIndex];
     });
 
