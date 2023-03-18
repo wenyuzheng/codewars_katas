@@ -1,12 +1,15 @@
 export function VigenèreCipher(key, abc) {
   this.encode = function (str) {
     const chars = str.split("");
+    const abcLength = abc.length;
+
     let keyIndex = 0;
 
     const encodedChars = chars.map((char) => {
       if (!abc.includes(char)) return char;
 
-      const newIndex = (abc.indexOf(key[keyIndex]) + abc.indexOf(char)) % 26;
+      const newIndex =
+        (abc.indexOf(key[keyIndex]) + abc.indexOf(char)) % abcLength;
       keyIndex = keyIndex === key.length - 1 ? 0 : keyIndex + 1;
       return abc[newIndex];
     });
@@ -16,13 +19,15 @@ export function VigenèreCipher(key, abc) {
 
   this.decode = function (str) {
     const chars = str.split("");
+    const abcLength = abc.length;
     let keyIndex = 0;
 
     const decodedChars = chars.map((char) => {
       if (!abc.includes(char)) return char;
 
       const newIndex =
-        (abc.indexOf(char) - abc.indexOf(key[keyIndex]) + 26) % 26;
+        (abc.indexOf(char) - abc.indexOf(key[keyIndex]) + abcLength) %
+        abcLength;
       keyIndex = keyIndex === key.length - 1 ? 0 : keyIndex + 1;
       return abc[newIndex];
     });
