@@ -19,5 +19,6 @@ describe("VigenèreCipher", () => {
 
   it("unchange", () => {
     expect(c.encode("CODEWARS")).equal("CODEWARS");
+    expect(c.decode("CODEWARS")).equal("CODEWARS");
   });
 });
