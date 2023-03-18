@@ -15,6 +15,16 @@ export function VigenèreCipher(key, abc) {
   };
 
   this.decode = function (str) {
-    //...
+    const chars = str.split("");
+    let keyIndex = 0;
+
+    const decodedChars = chars.map((char) => {
+      const newIndex =
+        (abc.indexOf(char) - abc.indexOf(key[keyIndex]) + 26) % 26;
+      keyIndex = keyIndex === key.length - 1 ? 0 : keyIndex + 1;
+      return abc[newIndex];
+    });
+
+    return decodedChars.join("");
   };
 }
