@@ -6,7 +6,7 @@ function bowlingScore(frames) {
   for (let i = 0; i < framesArr.length; i++) {
     if (framesArr[i] === "X" && i < 9) {
       score += 10 + getScore(framesArr, i, 2);
-    } else if (framesArr[i].includes("/")) {
+    } else if (framesArr[i].includes("/") && i < 9) {
       score += 10 + getScore(framesArr, i, 1);
     } else if (framesArr[i].length === 3) {
       score += getThreeRollsScore(framesArr[i]);
@@ -49,6 +49,7 @@ const getThreeRollsScore = (frame) => {
     : first + second + third;
 };
 
-console.log(bowlingScore("11 11 11 11 11 11 11 11 11 11")); // 20
-console.log(bowlingScore("X X X X X X X X X XXX")); // 300
-console.log(bowlingScore("X X 9/ 80 X X 90 8/ 7/ 44")); // 171
+// console.log(bowlingScore("11 11 11 11 11 11 11 11 11 11")); // 20
+// console.log(bowlingScore("X X X X X X X X X XXX")); // 300
+// console.log(bowlingScore("X X 9/ 80 X X 90 8/ 7/ 44")); // 171
+console.log(bowlingScore("5/ 4/ 3/ 2/ 1/ 0/ X 9/ 4/ 8/8"));
