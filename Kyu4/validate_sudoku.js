@@ -1,38 +1,13 @@
-// export const Sudoku = function (data) {
-//   const isUniqueSet = (row, n) => {
-//     const uniqRow = new Set(row);
-//     return uniqRow.size === n;
-//   };
-
-//   return {
-//     isValid: function () {
-//       const n = data.length;
-
-//       for (let i = 0; i < n; i++) {
-//         if (data[i].length !== n) return false;
-
-//         const row = data[i];
-//         if (!isUniqueSet(row, n)) return false;
-
-//         const column = data.map((e) => e[i]);
-//         if (!isUniqueSet(column, n)) return false;
-
-//         // const square = data.map((e) => {
-//         //   console.log(Math.floor(i / 3), Math.floor(data.indexOf(e) / 3));
-//         // });
-//         // if (!isUniqueSet(square, n)) return false;
-//       }
-
-//       return true;
-//     },
-//   };
-// };
-
 export const Sudoku = function (data) {
-  const isUniqueSet = (row, n) => {
-    // const uniqRow = new Set(row);
-    // return uniqRow.size === n;
-    for (let k = 1; k <= n; k++) {}
+  const isUniqueSet = (set, n) => {
+    // Should only contain integers 1...N
+    for (let k = 1; k <= n; k++) {
+      if (!set.includes(k)) return false;
+    }
+
+    // Each integer should only appear once
+    const uniqRow = new Set(set);
+    return uniqRow.size === n;
   };
 
   return {
@@ -49,8 +24,9 @@ export const Sudoku = function (data) {
         const row = data[i];
         if (!isUniqueSet(row, n)) return false;
 
-        // const column = data.map((e) => e[i]);
-        // if (!isUniqueSet(column, n)) return false;
+        // Validate column
+        const column = data.map((e) => e[i]);
+        if (!isUniqueSet(column, n)) return false;
 
         // const square = data.map((e) => {
         //   console.log(Math.floor(i / 3), Math.floor(data.indexOf(e) / 3));
