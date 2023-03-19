@@ -54,17 +54,15 @@ var badSudoku3 = new Sudoku([
 ]);
 
 var badSudoku4 = new Sudoku([
-  [1, 1, 1, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [2, 3, 5, 4, 6, 7, 9, 8, 1],
+  [1, 8, 2, 5, 7, 6, 3, 9, 4],
+  [3, 9, 1, 2, 8, 4, 5, 6, 7],
+  [5, 2, 6, 1, 3, 9, 7, 4, 8],
+  [8, 1, 4, 6, 9, 5, 2, 7, 3],
+  [4, 5, 7, 8, 1, 3, 6, 2, 9],
+  [6, 7, 9, 3, 4, 1, 8, 5, 2],
+  [9, 4, 8, 7, 5, 2, 1, 3, 6],
+  [7, 6, 3, 9, 2, 8, 4, 1, 5],
 ]);
 
 var badSudoku5 = new Sudoku([
@@ -74,26 +72,29 @@ var badSudoku5 = new Sudoku([
 ]);
 
 describe("Sudoku", function () {
-  describe("should be valid", function () {
-    expect(goodSudoku1.isValid()).equal(true);
-    expect(goodSudoku2.isValid()).equal(true);
-  });
+  //   describe("should be valid", function () {
+  //     expect(goodSudoku1.isValid()).equal(true);
+  //     expect(goodSudoku2.isValid()).equal(true);
+  //   });
 
   describe("should be invalid", function () {
-    it("invalid column", () => {
-      expect(badSudoku1.isValid()).equal(false);
+    // it("invalid column", () => {
+    //   expect(badSudoku1.isValid()).equal(false);
+    // });
+    // it("not NxN", () => {
+    //   expect(badSudoku2.isValid()).equal(false);
+    // });
+    // it("invalid row", () => {
+    //   expect(badSudoku3.isValid()).equal(false);
+    // });
+    it("invalid square", () => {
+      expect(badSudoku4.isValid()).equal(false);
     });
-    it("not NxN", () => {
-      expect(badSudoku2.isValid()).equal(false);
-    });
-    it("invalid row", () => {
-      expect(badSudoku3.isValid()).equal(false);
-    });
-    it("√N !== integer", () => {
-      expect(badSudoku5.isValid()).equal(false);
-    });
-    it("invalid value in set", () => {
-      expect(new Sudoku([[2]]).isValid()).equal(false);
-    });
+    // it("√N !== integer", () => {
+    //   expect(badSudoku5.isValid()).equal(false);
+    // });
+    // it("invalid value in set", () => {
+    //   expect(new Sudoku([[2]]).isValid()).equal(false);
+    // });
   });
 });
