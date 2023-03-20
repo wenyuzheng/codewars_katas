@@ -6,7 +6,7 @@ const findPathLength = (chain, target) => {
     currNode = chain[`${currNode[0]},${currNode[1]}`];
     path.push(currNode);
   }
-  return path.length;
+  return path.length - 1;
 };
 
 export function pathFinder(maze) {
@@ -24,12 +24,12 @@ export function pathFinder(maze) {
 
     // Check right
     if (x + 1 <= mazeArr.length - 1 && mazeArr[y][x + 1] === ".") {
-      stack.push([y, x + 1]);
+      stack.unshift([y, x + 1]);
       chain[`${y},${x + 1}`] = [y, x];
     }
     // Check left
     if (x - 1 >= 0 && mazeArr[y][x - 1] === ".") {
-      stack.push([y, x - 1]);
+      stack.unshift([y, x - 1]);
       chain[`${y},${x - 1}`] = [y, x];
     }
     // Check down
@@ -39,13 +39,11 @@ export function pathFinder(maze) {
     }
     // Check up
     if (y - 1 >= 0 && mazeArr[y - 1][x] === ".") {
-      stack.push([y - 1, x]);
+      stack.unshift([y - 1, x]);
       chain[`${y - 1},${x}`] = [y, x];
     }
 
     mazeArr[y][x] = "v"; // Mark as visited
-
-    console.log({ chain });
   }
 
   return false;
