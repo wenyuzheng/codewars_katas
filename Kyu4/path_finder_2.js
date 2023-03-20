@@ -1,3 +1,14 @@
+const findPathLength = (chain, target) => {
+  let currNode = chain[`${target[0]},${target[1]}`];
+  let path = [currNode];
+  while (currNode !== [0, 0]) {
+    if (currNode === null) break;
+    currNode = chain[`${currNode[0]},${currNode[1]}`];
+    path.push(currNode);
+  }
+  return path.length;
+};
+
 export function pathFinder(maze) {
   let mazeArr = maze.split("\n").map((e) => e.split(""));
   let stack = [[0, 0]];
@@ -8,7 +19,7 @@ export function pathFinder(maze) {
 
     // Reach exit
     if (x === mazeArr.length - 1 && y === mazeArr.length - 1) {
-      return true;
+      return findPathLength(chain, [mazeArr.length - 1, mazeArr.length - 1]);
     }
 
     // Check right
