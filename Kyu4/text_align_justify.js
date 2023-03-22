@@ -1,23 +1,31 @@
 export function justify(text, width) {
   const words = text.split(" ");
 
-  let textArr = [];
+  //   let textArr = [];
+  let texts = "";
 
-  let i = 0;
-
-  while (words.length !== 0) {
-    //   for (let i = 0; i < words.length; i++) {
-    let tempWidth = width;
-    while (tempWidth - words[i].length >= 0) {
+  let tempWidth = width;
+  for (let i = 0; i < words.length; i++) {
+    if (tempWidth - words[i].length >= 0) {
       tempWidth -= words[i].length;
-      textArr.push(words[i]);
-      words.shift();
-      i++;
+      //   textArr.push(words[i]);
+      texts += words[i];
+    } else {
+      //   textArr.push("\n");
+      texts += "\n";
+
+      tempWidth = width;
     }
-    textArr.push("\n");
+    // while (tempWidth - words[i].length >= 0) {
+    //   tempWidth -= words[i].length;
+    //   textArr.push(words[i]);
+    //   words.shift();
+    //   i++;
+    // }
+    // textArr.push("\n");
   }
 
-  console.log({ textArr });
+  console.log({ texts });
 
   //   let texts = [];
   //   for (let i = 0; i < Math.floor(text.length / width); i++) {
