@@ -36,75 +36,62 @@ export function pathFinder(maze) {
     }
   }
 
-  // Object.keys(graph).forEach((e) => {
-  //   graph[e].neighbours.forEach((n) => {
-  //     if (graph[n].workingVal === null) {
-  //       graph[n].workingVal = 1 + graph[e].finalVal;
-  //     }
-  //     graph[n].neighbours.forEach((n2) => {});
-  //   });
-
-  //   // console.log({ e }, graph[e]);
-  // });
-  dijkstra(graph);
-
-  return false;
+  return dijkstra(graph);
 }
 
-// const updateWorkingVal = (node, graph) => {
-//   console.log({ node });
-//   graph[node].neighbours.forEach((n) => {
-//     graph[n].workingVal = 1 + graph[node].finalVal;
-//   });
-// };
-
-const dijkstra = (graph) => {
-  // const visited = ["0,0"];
-  graph["0,0"].finalVal = 0;
+const update = (node, graph) => {
+  console.log({ node });
 
   // Update working value of neighbours
-  graph["0,0"].neighbours.forEach((n) => {
+  graph[node].neighbours.forEach((n) => {
     if (graph[n].workingVal === undefined) {
-      graph[n].workingVal = 1 + graph["0,0"].finalVal;
+      graph[n].workingVal = 1 + graph[node].finalVal;
     } else {
       graph[n].workingVal = Math.min(
         graph[n].workingVal,
-        1 + graph["0,0"].finalVal
+        1 + graph[node].finalVal
       );
     }
   });
+  console.log({ graph });
 
   // Get all nodes with working value but no final value
   const nodesWithWorkingNoFinal = {};
   Object.keys(graph).forEach((k) => {
-    if (graph[k].workingVal && !graph[k].finalVal) {
+    if (graph[k].workingVal && !graph[k].finalVal && graph[k].finalVal !== 0) {
       nodesWithWorkingNoFinal[k] = graph[k];
     }
   });
-  // console.log({ nodesWithWorkingNoFinal });
+  console.log({ nodesWithWorkingNoFinal });
 
   // Pick the node with least working value
-  let min = [Infinity, null];
-  Object.keys(nodesWithWorkingNoFinal).forEach((node) => {
-    min =
-      min[0] <= graph[node].workingVal ? min : [graph[node].workingVal, node];
-  });
-  console.log({ min }, graph[min[1]]);
+  if (Object.keys(nodesWithWorkingNoFinal).length !== 0) {
+    let min = null;
+    Object.keys(nodesWithWorkingNoFinal).forEach((node) => {
+      if (!min || graph[min].workingVal <= graph[node].workingVal) {
+        min = node;
+      }
+    });
+    graph[min].finalVal = graph[min].workingVal;
 
-  graph[min[1]].finalVal = graph[min[1]].workingVal;
+    console.log({ graph });
 
-  // for (let i = 0; i < Object.keys(graph).length; i++) {
-  // const [k, v] = Object.entries(graph)[i];
+    update(min, graph);
+  }
 
-  // // if (visited.includes(k)) continue;
+  // return graph;
+};
 
-  // visited.push(k);
+const dijkstra = (graph) => {
+  graph["0,0"].finalVal = 0;
 
-  // v.neighbours.forEach((n) => {
-  //   graph[n].workingVal = 1 + v.finalVal;
-  // });
-  // }
-  console.log({ graph });
+  update("0,0", graph);
+
+  // const newGraph = update("0,0", graph);
+  // console.log({ graph }, graph["2,2"].finalVal);
+
+  // if (!graph["2,2"]) return false;
+  return graph["2,2"].finalVal;
 };
 
 // export function pathFinder(maze) {
