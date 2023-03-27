@@ -3,33 +3,70 @@ export function pathFinder(maze) {
 
   const n = mazeArr.length - 1;
 
+  const graph = getGraph(mazeArr);
+
+  return dijkstra(graph, `${n},${n}`);
+}
+
+export const getGraph = (mazeArr) => {
   const graph = {};
 
-  for (let x = 0; x <= n; x++) {
-    for (let y = 0; y <= n; y++) {
+  // for (let x = 0; x < mazeArr.length; x++) {
+  //   for (let y = 0; y < mazeArr[0].length; y++) {
+  //     console.log({ x, y }, mazeArr[x][y], x + 1, y);
+  //     if (mazeArr[x][y] === "W") continue;
+
+  //     let neighbours = [];
+
+  //     // console.log(mazeArr[x + 1][y]);
+
+  //     // Check right
+  //     if (x + 1 <= mazeArr[0].length - 1 && mazeArr[x + 1][y] === ".") {
+  //       console.log("right");
+  //       neighbours.push(`${x + 1},${y}`);
+  //     }
+  //     // Check left
+  //     if (x - 1 >= 0 && mazeArr[x - 1][y] === ".") {
+  //       neighbours.push(`${x - 1},${y}`);
+  //     }
+  //     // Check down
+  //     if (y + 1 <= n && mazeArr[x][y + 1] === ".") {
+  //       neighbours.push(`${x},${y + 1}`);
+  //     }
+  //     // Check up
+  //     if (y - 1 >= 0 && mazeArr[x][y - 1] === ".") {
+  //       neighbours.push(`${x},${y - 1}`);
+  //     }
+
+  //     graph[`${x},${y}`] = {
+  //       neighbours,
+  //     };
+  //   }
+
+  //   console.log({ graph });
+  // }
+
+  for (let x = 0; x < mazeArr.length; x++) {
+    for (let y = 0; y < mazeArr[0].length; y++) {
       if (mazeArr[x][y] === "W") continue;
 
       let neighbours = [];
 
       // Check right
-      if (x + 1 <= n && mazeArr[x + 1][y] === ".") {
-        // neighbours.push([x + 1, y]);
-        neighbours.push(`${x + 1},${y}`);
-      }
-      // Check left
-      if (x - 1 >= 0 && mazeArr[x - 1][y] === ".") {
-        // neighbours.push([x - 1, y]);
-        neighbours.push(`${x - 1},${y}`);
-      }
-      // Check down
-      if (y + 1 <= n && mazeArr[x][y + 1] === ".") {
-        // neighbours.push([x, y + 1]);
+      if (y + 1 <= mazeArr[0].length - 1 && mazeArr[x][y + 1] === ".") {
         neighbours.push(`${x},${y + 1}`);
       }
-      // Check up
+      // Check left
       if (y - 1 >= 0 && mazeArr[x][y - 1] === ".") {
-        // neighbours.push([x, y - 1]);
         neighbours.push(`${x},${y - 1}`);
+      }
+      // Check down
+      if (x + 1 <= mazeArr.length - 1 && mazeArr[x + 1][y] === ".") {
+        neighbours.push(`${x + 1},${y}`);
+      }
+      // Check up
+      if (x - 1 >= 0 && mazeArr[x - 1][y] === ".") {
+        neighbours.push(`${x - 1},${y}`);
       }
 
       graph[`${x},${y}`] = {
@@ -38,12 +75,12 @@ export function pathFinder(maze) {
     }
   }
 
-  return dijkstra(graph, `${n},${n}`);
-}
+  // Object.keys(graph).forEach((e) => console.log({ e }, graph[e]));
+
+  return graph;
+};
 
 const update = (node, graph) => {
-  console.log({ node });
-
   // Update working value of neighbours
   graph[node].neighbours.forEach((n) => {
     if (graph[n].workingVal === undefined) {
@@ -55,7 +92,7 @@ const update = (node, graph) => {
       );
     }
   });
-  // console.log({ graph });
+  console.log({ graph });
 
   // Get all nodes with working value but no final value
   const nodesWithWorkingNoFinal = {};
@@ -64,9 +101,9 @@ const update = (node, graph) => {
       nodesWithWorkingNoFinal[k] = graph[k];
     }
   });
-  // console.log({ nodesWithWorkingNoFinal });
+  console.log({ nodesWithWorkingNoFinal });
 
-  // Pick the node with least working value
+  // Pick the node with least working value and repeat
   if (Object.keys(nodesWithWorkingNoFinal).length !== 0) {
     let min = null;
     Object.keys(nodesWithWorkingNoFinal).forEach((node) => {
@@ -76,78 +113,23 @@ const update = (node, graph) => {
     });
     graph[min].finalVal = graph[min].workingVal;
 
-    // console.log({ graph });
-
     update(min, graph);
   }
 };
 
-const dijkstra = (graph, goal) => {
+export const dijkstra = (graph, goal) => {
+  // Initialise
   graph["0,0"].finalVal = 0;
 
+  // Update dijkstra graph
   update("0,0", graph);
 
-  // console.log({ graph }, graph["2,2"].workingVal);
+  // console.log({ graph });
 
-  console.log({ goal });
+  return graph;
 
-  if (!graph[goal].workingVal) return false;
-  return graph[goal].finalVal;
+  // console.log({ graph });
+
+  // if (!graph[goal].workingVal) return false;
+  // return graph[goal].finalVal;
 };
-
-// export function pathFinder(maze) {
-//   let mazeArr = maze.split("\n").map((e) => e.split(""));
-
-//   const graph = {};
-
-//   for (let x = 0; x < mazeArr.length; x++) {
-//     for (let y = 0; y < mazeArr.length; y++) {
-//       if (mazeArr[x][y] === "W") continue;
-
-//       let neighbours = [];
-
-//       graph[`${x},${y}`] = { neighbours, workingVal: null, finalVal: null };
-
-//       // Check right
-//       if (x + 1 <= mazeArr.length - 1 && mazeArr[x + 1][y] === ".") {
-//         neighbours.push(`${x + 1},${y}`);
-//         // graph[`${x + 1},${y}`].workingVal = 1 + graph[`${x},${y}`].finalVal;
-//         graph[`${x + 1},${y}`] = {
-//           workingVal: 1 + graph[`${x},${y}`].finalVal,
-//         };
-//       }
-//       // Check left
-//       if (x - 1 >= 0 && mazeArr[x - 1][y] === ".") {
-//         neighbours.push(`${x - 1},${y}`);
-//         // graph[`${x - 1},${y}`].workingVal = 1 + graph[`${x},${y}`].finalVal;
-//         graph[`${x - 1},${y}`] = {
-//           workingVal: 1 + graph[`${x},${y}`].finalVal,
-//         };
-//       }
-//       // Check down
-//       if (y + 1 <= mazeArr.length - 1 && mazeArr[x][y + 1] === ".") {
-//         neighbours.push(`${x},${y + 1}`);
-//         // graph[`${x},${y + 1}`].workingVal = 1 + graph[`${x},${y}`].finalVal;
-//         graph[`${x},${y + 1}`] = {
-//           workingVal: 1 + graph[`${x},${y}`].finalVal,
-//         };
-//       }
-//       // Check up
-//       if (y - 1 >= 0 && mazeArr[x][y - 1] === ".") {
-//         neighbours.push(`${x},${y - 1}`);
-//         // graph[`${x},${y - 1}`].workingVal = 1 + graph[`${x},${y}`].finalVal;
-//         graph[`${x},${y - 1}`] = {
-//           workingVal: 1 + graph[`${x},${y}`].finalVal,
-//         };
-//       }
-
-//       graph[`${x},${y}`] = { neighbours, workingVal: null, finalVal: null };
-//     }
-//   }
-
-//   Object.keys(graph).forEach((e) => {
-//     console.log({ e }, graph[e]);
-//   });
-
-//   return false;
-// }
