@@ -18,7 +18,7 @@ function getNeighbours(mazeArr, x, y) {
     neighbours.push(`${x - 1},${y}`);
   }
 
-  console.log({ x, y, neighbours });
+  // console.log({ x, y, neighbours });
 
   return neighbours;
 }
