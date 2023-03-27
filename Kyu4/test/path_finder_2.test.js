@@ -13,12 +13,12 @@ it("Basic tests", function () {
 ...`
   );
 
-  // testMaze(
-  //   false,
-  //   `.W.
-  // .W.
-  // W..`
-  // );
+  testMaze(
+    false,
+    `.W.
+.W.
+W..`
+  );
 
   //   testMaze(
   //     10,

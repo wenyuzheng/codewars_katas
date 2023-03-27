@@ -53,7 +53,7 @@ const update = (node, graph) => {
       );
     }
   });
-  console.log({ graph });
+  // console.log({ graph });
 
   // Get all nodes with working value but no final value
   const nodesWithWorkingNoFinal = {};
@@ -62,7 +62,7 @@ const update = (node, graph) => {
       nodesWithWorkingNoFinal[k] = graph[k];
     }
   });
-  console.log({ nodesWithWorkingNoFinal });
+  // console.log({ nodesWithWorkingNoFinal });
 
   // Pick the node with least working value
   if (Object.keys(nodesWithWorkingNoFinal).length !== 0) {
@@ -74,12 +74,10 @@ const update = (node, graph) => {
     });
     graph[min].finalVal = graph[min].workingVal;
 
-    console.log({ graph });
+    // console.log({ graph });
 
     update(min, graph);
   }
-
-  // return graph;
 };
 
 const dijkstra = (graph) => {
@@ -87,10 +85,9 @@ const dijkstra = (graph) => {
 
   update("0,0", graph);
 
-  // const newGraph = update("0,0", graph);
-  // console.log({ graph }, graph["2,2"].finalVal);
+  // console.log({ graph }, graph["2,2"].workingVal);
 
-  // if (!graph["2,2"]) return false;
+  if (!graph["2,2"].workingVal) return false;
   return graph["2,2"].finalVal;
 };
 
