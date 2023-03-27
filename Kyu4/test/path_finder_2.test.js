@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { pathFinder } from "../path_finder_2.js";
+import { pathFinder } from "../path_finder_2_v2.js";
 
 function testMaze(expected, maze) {
   assert.strictEqual(pathFinder(maze), expected, "maze\n" + maze);

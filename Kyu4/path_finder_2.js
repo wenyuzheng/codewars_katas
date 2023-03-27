@@ -23,7 +23,7 @@ export function pathFinder(maze) {
     }
 
     // Check right
-    if (x + 1 <= mazeArr.length - 1 && mazeArr[y][x + 1] === ".") {
+    if (x + 1 <= mazeArr.leng - th - 1 && mazeArr[y][x + 1] === ".") {
       stack.unshift([y, x + 1]);
       chain[`${y},${x + 1}`] = [y, x];
     }
