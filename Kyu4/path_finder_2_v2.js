@@ -1,16 +1,18 @@
 export function pathFinder(maze) {
   let mazeArr = maze.split("\n").map((e) => e.split(""));
 
+  const n = mazeArr.length - 1;
+
   const graph = {};
 
-  for (let x = 0; x < mazeArr.length; x++) {
-    for (let y = 0; y < mazeArr.length; y++) {
+  for (let x = 0; x <= n; x++) {
+    for (let y = 0; y <= n; y++) {
       if (mazeArr[x][y] === "W") continue;
 
       let neighbours = [];
 
       // Check right
-      if (x + 1 <= mazeArr.length - 1 && mazeArr[x + 1][y] === ".") {
+      if (x + 1 <= n && mazeArr[x + 1][y] === ".") {
         // neighbours.push([x + 1, y]);
         neighbours.push(`${x + 1},${y}`);
       }
@@ -20,7 +22,7 @@ export function pathFinder(maze) {
         neighbours.push(`${x - 1},${y}`);
       }
       // Check down
-      if (y + 1 <= mazeArr.length - 1 && mazeArr[x][y + 1] === ".") {
+      if (y + 1 <= n && mazeArr[x][y + 1] === ".") {
         // neighbours.push([x, y + 1]);
         neighbours.push(`${x},${y + 1}`);
       }
@@ -36,7 +38,7 @@ export function pathFinder(maze) {
     }
   }
 
-  return dijkstra(graph);
+  return dijkstra(graph, `${n},${n}`);
 }
 
 const update = (node, graph) => {
@@ -80,15 +82,17 @@ const update = (node, graph) => {
   }
 };
 
-const dijkstra = (graph) => {
+const dijkstra = (graph, goal) => {
   graph["0,0"].finalVal = 0;
 
   update("0,0", graph);
 
   // console.log({ graph }, graph["2,2"].workingVal);
 
-  if (!graph["2,2"].workingVal) return false;
-  return graph["2,2"].finalVal;
+  console.log({ goal });
+
+  if (!graph[goal].workingVal) return false;
+  return graph[goal].finalVal;
 };
 
 // export function pathFinder(maze) {
