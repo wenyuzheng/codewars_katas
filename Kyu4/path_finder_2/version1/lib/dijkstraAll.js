@@ -1,4 +1,4 @@
-const { dijkstraOnce } = require("./dijkstraOnce");
+const { dijkstraOnce } = require("./dijkstraOnce_v2");
 
 const dijkstraAll = (graph, startNode) => {
   // Initialise
@@ -8,6 +8,8 @@ const dijkstraAll = (graph, startNode) => {
   while (nextNode !== undefined) {
     nextNode = dijkstraOnce(graph, nextNode);
   }
+
+  console.log(graph);
 
   return graph;
 };

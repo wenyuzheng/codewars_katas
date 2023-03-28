@@ -1,4 +1,4 @@
-const { dijkstraAll } = require("../lib/dijkstraAll");
+const { dijkstraAll } = require("../version1/lib/dijkstraAll");
 
 describe("dijkstra all", () => {
   it("eg 1", () => {

@@ -23,10 +23,12 @@ const path_finder = (maze) => {
   const goalNode = `${n},${n}`;
 
   let graph = getGraph(maze, startNode);
-  graph = dijkstraAll(graph, startNode);
 
-  if (!graph[goalNode]) return false;
-  return graph[goalNode].finalVal;
+  console.log(graph);
+  // graph = dijkstraAll(graph, startNode);
+
+  // if (!graph[goalNode]) return false;
+  // return graph[goalNode].finalVal;
 };
 
 module.exports = { path_finder };
