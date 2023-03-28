@@ -9,8 +9,6 @@ const dijkstraAll = (graph, startNode) => {
     nextNode = dijkstraOnce(graph, nextNode);
   }
 
-  console.log(graph);
-
   return graph;
 };
 
