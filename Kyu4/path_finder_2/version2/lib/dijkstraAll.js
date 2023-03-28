@@ -1,6 +1,6 @@
 const { dijkstraOnce } = require("./dijkstraOnce");
 
-const dijkstraAll = (maze, startNode) => {
+const dijkstraAll = (maze, startNode, goalNode) => {
   const mazeArr = maze.split("\n").map((e) => e.split(""));
 
   // Initialise
@@ -12,6 +12,7 @@ const dijkstraAll = (maze, startNode) => {
   // Dijkstra
   let nextNode = dijkstraOnce(mazeArr, graph, stack, startNode);
   while (nextNode !== undefined) {
+    if (graph[goalNode] && graph[goalNode].finalVal) return graph;
     nextNode = dijkstraOnce(mazeArr, graph, stack, nextNode);
   }
 

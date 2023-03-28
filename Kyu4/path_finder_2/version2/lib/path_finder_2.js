@@ -6,7 +6,7 @@ const path_finder = (maze) => {
   const startNode = "0,0";
   const goalNode = `${n},${n}`;
 
-  const graph = dijkstraAll(maze, startNode);
+  const graph = dijkstraAll(maze, startNode, goalNode);
 
   if (!graph[goalNode]) return false;
   return graph[goalNode].finalVal;
