@@ -42,4 +42,14 @@ describe("Get neighbours", () => {
     expect(getNeighbours(maze, 2, 0)).toEqual(["1,0"]);
     expect(getNeighbours(maze, 2, 2)).toEqual(["1,2"]);
   });
+
+  it("eg 5", () => {
+    const maze = "......\n......\n......\n......\n.....W\n....W."
+      .split("\n")
+      .map((e) => e.split(""));
+
+    expect(getNeighbours(maze, 0, 0)).toEqual(["0,1", "1,0"]);
+    expect(getNeighbours(maze, 3, 5)).toEqual(["3,4", "2,5"]);
+    expect(getNeighbours(maze, 5, 3)).toEqual(["5,2", "4,3"]);
+  });
 });

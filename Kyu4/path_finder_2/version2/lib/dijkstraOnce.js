@@ -18,14 +18,10 @@ const dijkstraOnce = (mazeArr, graph, stack, node) => {
     stack.push([n, graph[n].workingVal]);
   });
 
-  console.log({ graph, stack });
-
   if (stack.length > 0) {
     // Find the node with the least working value
     stack = stack.sort((a, b) => a[1] - b[1]);
     const nextNode = stack.shift()[0];
-
-    console.log({ nextNode, stack });
 
     // Set the next node's finalVal
     graph[nextNode].finalVal = graph[nextNode].workingVal;

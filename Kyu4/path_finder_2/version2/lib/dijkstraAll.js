@@ -15,8 +15,6 @@ const dijkstraAll = (maze, startNode) => {
     nextNode = dijkstraOnce(mazeArr, graph, stack, nextNode);
   }
 
-  console.log(graph);
-
   return graph;
 };
 
