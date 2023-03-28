@@ -13,7 +13,7 @@ const path_finder = (maze) => {
 
   console.log(graph, { goalNode }, !graph[goalNode]);
 
-  if (!graph[goalNode]) return false;
+  if (!graph[goalNode].finalVal) return false;
   return graph[goalNode].finalVal;
 };
 

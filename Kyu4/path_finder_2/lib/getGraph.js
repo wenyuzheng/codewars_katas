@@ -9,7 +9,7 @@ const getGraph = (maze) => {
     for (let y = 0; y < mazeArr[x].length; y++) {
       if (mazeArr[x][y] === "W") continue;
 
-      console.log({ x, y }, getNeighbours(mazeArr, x, y));
+      // console.log({ x, y }, getNeighbours(mazeArr, x, y));
 
       graph[`${x},${y}`] = { neighbours: getNeighbours(mazeArr, x, y) };
     }

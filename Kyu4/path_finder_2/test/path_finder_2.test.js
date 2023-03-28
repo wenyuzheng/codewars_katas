@@ -1,7 +1,7 @@
 const { path_finder } = require("../lib/path_finder_2");
 
 describe("path finder", () => {
-  xit("3x3", () => {
+  it("3x3", () => {
     const maze = `.W.
 .W.
 ...`;
@@ -10,30 +10,30 @@ describe("path finder", () => {
 
   it("3x3 false", () => {
     const maze = `.W.
-  .W.
-  W..`;
+.W.
+W..`;
     expect(path_finder(maze)).toEqual(false);
   });
 
-  //   it("6x6", () => {
-  //     const maze = `......
-  // ......
-  // ......
-  // ......
-  // ......
-  // ......`;
-  //     expect(path_finder(maze)).toEqual(10);
-  //   });
+  it("6x6", () => {
+    const maze = `......
+......
+......
+......
+......
+......`;
+    expect(path_finder(maze)).toEqual(10);
+  });
 
-  //   it("6x6 false", () => {
-  //     const maze = `......
-  // ......
-  // ......
-  // ......
-  // .....W
-  // ....W.`;
-  //     expect(path_finder(maze)).toEqual(false);
-  //   });
+  it("6x6 false", () => {
+    const maze = `......
+......
+......
+......
+.....W
+....W.`;
+    expect(path_finder(maze)).toEqual(false);
+  });
 });
 
 //   testMaze(
