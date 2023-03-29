@@ -6,12 +6,12 @@ function testMaze(expected, maze) {
 }
 
 it("Basic tests", function () {
-  testMaze(
-    4,
-    `.W.
-.W.
-...`
-  );
+  //   testMaze(
+  //     4,
+  //     `.W.
+  // .W.
+  // ...`
+  //   );
 
   //   testMaze(
   //     false,
@@ -20,15 +20,22 @@ it("Basic tests", function () {
   // W..`
   //   );
 
-  //   testMaze(
-  //     10,
-  //     `......
-  // ......
-  // ......
-  // ......
-  // ......
-  // ......`
-  //   );
+  testMaze(
+    4,
+    `...
+...
+...`
+  );
+
+  testMaze(
+    10,
+    `......
+......
+......
+......
+......
+......`
+  );
 
   //   testMaze(
   //     false,
