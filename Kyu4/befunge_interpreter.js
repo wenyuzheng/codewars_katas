@@ -1,42 +1,3 @@
-const interpretChar = (stack, output, codeArr, x, y) => {
-  char = codeArr[x][y];
-
-  console.log({ x, y, char });
-
-  switch (char) {
-    case /[^0-9]/:
-      stack.push(parseInt(char));
-      break;
-    case ">":
-      x = x + 1;
-      break;
-    case "<":
-      x--;
-      break;
-    case "^":
-      y--;
-      break;
-    case "v":
-      y++;
-      break;
-
-    case "_":
-      const element = stack.pop();
-      element === 0 ? x++ : x--;
-      break;
-
-    case ".":
-      output += stack.pop();
-      break;
-    case ":":
-      stack.push(stack.length === 0 ? 0 : stack[stack.length - 1]);
-      break;
-
-    case " ":
-      break;
-  }
-};
-
 const move = (direction, x, y) => {
   //   console.log({ direction, x, y });
   switch (direction) {
@@ -59,6 +20,13 @@ const move = (direction, x, y) => {
   return [x, y];
 };
 
+const operators = ["+", "-", "*", "/", "%", "`"];
+const popOnceOps = ["!", "_", "|"];
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function interpret(code) {
   const codeArr = code.split("\n").map((e) => e.split(""));
 
@@ -75,43 +43,108 @@ function interpret(code) {
 
     if (parseInt(char) >= 0 && parseInt(char) <= 9) {
       stack.push(parseInt(char));
-      [x, y] = move(direction, x, y);
-      continue;
-    }
+    } else if (operators.includes(char)) {
+      const a = stack.pop();
+      const b = stack.pop();
 
-    switch (char) {
-      case ">":
-        direction = "right";
-        break;
-      case "<":
-        direction = "left";
-        break;
-      case "^":
-        direction = "up";
-        break;
-      case "v":
-        direction = "down";
-        break;
+      switch (char) {
+        case "+":
+          stack.push(a + b);
+          break;
+        case "-":
+          stack.push(b - a);
+          break;
+        case "*":
+          stack.push(a * b);
+          break;
+        case "/":
+          stack.push(a === 0 ? 0 : Math.floor(b / a));
+          break;
+        case "%":
+          stack.push(b > a ? 1 : 0);
+          break;
+        case "`":
+          stack.push(a === 0 ? 0 : b % a);
+          break;
+      }
+    } else if (popOnceOps.includes(char)) {
+      const element = stack.pop();
 
-      case "_":
-        const element = stack.pop();
-        direction = element === 0 ? "right" : "left";
-        break;
+      switch (char) {
+        case "!":
+          stack.push(element === 0 ? 1 : 0);
+          break;
+        case "_":
+          direction = element === 0 ? "right" : "left";
+          break;
+        case "|":
+          direction = element === 0 ? "down" : "up";
+          break;
+      }
+    } else {
+      switch (char) {
+        case ">":
+          direction = "right";
+          break;
+        case "<":
+          direction = "left";
+          break;
+        case "^":
+          direction = "up";
+          break;
+        case "v":
+          direction = "down";
+          break;
+        case "?":
+          const randomInt = getRandomInt(4);
+          direction = ["right", "left", "up", "down"][randomInt];
+          break;
 
-      case ".":
-        output += stack.pop();
-        break;
-      case ":":
-        stack.push(stack.length === 0 ? 0 : stack[stack.length - 1]);
-        break;
+        case '"':
+          break;
 
-      case " ":
-        break;
+        case ":":
+          stack.push(stack.length === 0 ? 0 : stack[stack.length - 1]);
+          break;
+        case "\\":
+          console.log({ stack });
+          if (stack.length === 1) {
+            stack.unshift(0);
+          }
+          console.log({ stack });
+
+          const a = stack.pop();
+          const b = stack.pop();
+          stack.push(a, b);
+
+          break;
+
+        case "$":
+          stack.pop();
+          break;
+        case ".":
+          output += stack.pop();
+          break;
+        case ",":
+          // output the ASCII character
+          break;
+
+        case "#":
+          [x, y] = move(direction, x, y);
+          break;
+
+        case "p":
+          break;
+
+        case "g":
+          break;
+
+        case " ":
+          break;
+      }
     }
 
     [x, y] = move(direction, x, y);
-
-    console.log({ stack });
   }
 
   //   console.log({ x, y, char });
