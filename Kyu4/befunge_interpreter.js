@@ -116,6 +116,8 @@ function interpret(code) {
 
   //   console.log({ x, y, char });
 
+  console.log({ stack });
+
   return output;
 }
 
