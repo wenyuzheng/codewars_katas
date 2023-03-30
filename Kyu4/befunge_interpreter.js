@@ -39,7 +39,7 @@ function interpret(code) {
   while (codeArr[x][y] !== "@") {
     const char = codeArr[x][y];
 
-    console.log({ x, y, char });
+    // console.log({ x, y, char });
 
     if (parseInt(char) >= 0 && parseInt(char) <= 9) {
       stack.push(parseInt(char));
@@ -138,27 +138,27 @@ function interpret(code) {
           const l = stack.pop();
           const m = stack.pop();
           const n = stack.pop();
-
           codeArr[l][m] = String.fromCharCode(n);
           break;
 
         case "g":
           const e = stack.pop();
           const f = stack.pop();
-          stack.push(String.fromCharCode(codeArr[e][f]));
+          stack.push(codeArr[e][f].charCodeAt(0));
           break;
 
         case " ":
           break;
       }
     }
+    console.log({ char, stack, output });
 
     [x, y] = move(direction, x, y);
   }
 
   //   console.log({ x, y, char });
 
-  console.log({ stack });
+  //   console.log({ stack });
 
   return output;
 }
