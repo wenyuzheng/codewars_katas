@@ -1,5 +1,4 @@
 const move = (direction, x, y) => {
-  //   console.log({ direction, x, y });
   switch (direction) {
     case "right":
       y++;
@@ -39,8 +38,6 @@ function interpret(code) {
   while (codeArr[x][y] !== "@") {
     const char = codeArr[x][y];
 
-    // console.log({ x, y, char });
-
     if (parseInt(char) >= 0 && parseInt(char) <= 9) {
       stack.push(parseInt(char));
     } else if (operators.includes(char)) {
@@ -61,10 +58,10 @@ function interpret(code) {
           stack.push(a === 0 ? 0 : Math.floor(b / a));
           break;
         case "%":
-          stack.push(b > a ? 1 : 0);
+          stack.push(a === 0 ? 0 : b % a);
           break;
         case "`":
-          stack.push(a === 0 ? 0 : b % a);
+          stack.push(b > a ? 1 : 0);
           break;
       }
     } else if (popOnceOps.includes(char)) {
@@ -155,10 +152,6 @@ function interpret(code) {
 
     [x, y] = move(direction, x, y);
   }
-
-  //   console.log({ x, y, char });
-
-  //   console.log({ stack });
 
   return output;
 }
