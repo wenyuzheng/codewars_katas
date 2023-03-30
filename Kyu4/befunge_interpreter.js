@@ -101,22 +101,23 @@ function interpret(code) {
           break;
 
         case '"':
+          [x, y] = move(direction, x, y);
+          while (codeArr[x][y] !== '"') {
+            stack.push(codeArr[x][y].charCodeAt(0));
+            [x, y] = move(direction, x, y);
+          }
           break;
 
         case ":":
           stack.push(stack.length === 0 ? 0 : stack[stack.length - 1]);
           break;
         case "\\":
-          console.log({ stack });
           if (stack.length === 1) {
             stack.unshift(0);
           }
-          console.log({ stack });
-
           const a = stack.pop();
           const b = stack.pop();
           stack.push(a, b);
-
           break;
 
         case "$":
@@ -126,7 +127,7 @@ function interpret(code) {
           output += stack.pop();
           break;
         case ",":
-          // output the ASCII character
+          output += String.fromCharCode(stack.pop());
           break;
 
         case "#":
@@ -134,9 +135,17 @@ function interpret(code) {
           break;
 
         case "p":
+          const l = stack.pop();
+          const m = stack.pop();
+          const n = stack.pop();
+
+          codeArr[l][m] = String.fromCharCode(n);
           break;
 
         case "g":
+          const e = stack.pop();
+          const f = stack.pop();
+          stack.push(String.fromCharCode(codeArr[e][f]));
           break;
 
         case " ":
