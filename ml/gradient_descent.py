@@ -1,5 +1,10 @@
 from sympy import *
 
+trainData = [[[0.1, 0.2], [1, 0]], [[0.7, 0.9], [0, 1]]]
+
+# trainData = [[[0.1, 0.2], {"y0": 1, "y1": 0}], [[0.7, 0.9], "y"]]
+
+
 layersNum = 3
 neuronNum = 2
 
@@ -7,37 +12,53 @@ neurons = []
 weights = [[[1, 0.1], [0.2, 1]], [[1, 0.1], [0.2, 1]]]
 biases = [[1, 1], [1, 1]]
 
-# w100 = 1
-# w101 = 1
-# w110 = 1
-# w111 = 1
-# w120 = 1
-# w121 = 1
 
-# b10 = 1
-# b11 = 1
-# b20 = 1
-# b21 = 1
+# def sigmoid(x):
+#     return x
+
+y0, y1 = symbols("y0, y1")
+
+w100, w101, w110, w111, w200, w201, w210, w211 = symbols(
+    "w100, w101, w110, w111, w200, w201, w210, w211")
+
+b10, b11, b20, b21 = symbols(
+    "b10, b11, b20, b21")
+
+a00, a01, a10, a11, a20, a21 = symbols(
+    "a00, a01, a10, a11, a20, a21")
+
+a10 = 1/(1+E**(-(a00 * w100 + a01 * w110 + b10)))
+a11 = 1/(1+E**(-(a00 * w101 + a01 * w111 + b11)))
+a20 = 1/(1+E**(-(a10 * w200 + a11 * w210 + b20)))
+a21 = 1/(1+E**(-(a10 * w201 + a11 * w211 + b21)))
 
 
-def calGradient(x):
-    x, a = symbols
+c0 = (y0 - a20) ** 2
+c1 = (y1 - a21) ** 2
+
+
+# a10 = sigmoid(a00 * w100 + a01 * w110 + b10)
+# a11 = sigmoid(a00 * w101 + a01 * w111 + b11)
+# a20 = sigmoid(a10 * w200 + a11 * w210 + b20)
+# a21 = sigmoid(a10 * w201 + a11 * w211 + b21)
+
+x = symbols("x")
+
+
+def getGradient(a, para, subs=[]):
+    x = symbols("x")
     C = (x - a)**2
+    diffEq = C.diff(para)
+    return diffEq.subs(subs)
+    # return diffEq
 
 
-# x = Symbol("x")
-# y = Symbol("y")
+print(getGradient(a10, w100, [(x, 0), (a00, 0.1),
+      (a01, 0.2), (w100, 1), (w110, 1), (b10, 1)]))
 
-# f2 = 3*x**2 - 2*x*y + 1
-
-# f3 = f2.diff(x)
-
-# print(f3)
-# print(f3.subs(x, 1).subs(y, 2))
-
-
-def sigmoid(x):
-    return x
+# print(getGradient(a10, w100, [(x, 1), (a00, 0.1),
+#                               (a01, 0.2), (w100, 1), (w110, 1), (b10, 1)]))
+# # print(getGradient(a20, w200))
 
 
 def getNeuron(i, j):
@@ -48,7 +69,7 @@ def getNeuron(i, j):
         w = weights[j-1][n][i]
         sum += prevA * w
 
-    a = sigmoid(sum + biases[j-1][i])
+    a = 1 / (1 + exp(sum + biases[j-1][i]))
     return a
 
 
@@ -63,6 +84,27 @@ def oneLayerUpdate(j):
     neurons.append(nextLayerNeurons)
 
 
+neurons = [[0.1, 0.2], [1.1400000000000001, 1.21], [2.382, 2.324]]
+
+
+def backprop(dataSet):
+    [data, expected] = dataSet
+
+    levelNum = len(data)  # input data length = output data length?
+
+    sum = 0
+
+    for i in range(levelNum):
+        sum += neurons[layersNum - 1][i]
+
+    getGradient()
+
+    return
+
+
+print(backprop(trainData[0]))
+
+
 def initialise(dataSet):
     [data, expected] = dataSet
     neurons.append(data)
@@ -72,13 +114,7 @@ def initialise(dataSet):
 
     return neurons
 
-    # def proceed(dataSets):
-    #     for [data, expected] in dataSets:
-
-
-trainData = [[[0.1, 0.2], 0], [[0.7, 0.9], 1]]
-
-print(initialise(trainData[0]))
+# print(initialise(trainData[0]))
 
 # def S(x):
 #     return x
