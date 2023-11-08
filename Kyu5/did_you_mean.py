@@ -1,22 +1,29 @@
 class Dictionary:
     def __init__(self, words):
         self.words = words
-        
+
     def find_most_similar(self, term):
         diff = []
         for word in self.words:
             total = 0
             index = 0
 
-            print("word:", word)
-            matched = False
-            for t in term:
-                # print("index:", index)
-                for j in range(index, len(word)):
-                    print("w:", word[j])
+            if len(term) > len(word):
+                long = term
+                short = word
+            else:
+                long = word
+                short = term
 
-                    if t == word[j]:
-                        print( t, j, word[j])
+            print("word:", short)
+            matched = False
+            for t in long:
+                # print("index:", index)
+                for j in range(index, len(short)):
+                    print("w:", short[j])
+
+                    if t == short[j]:
+                        print( t, j, short[j])
 
                         index = j + 1
                         matched = True
@@ -25,21 +32,60 @@ class Dictionary:
                         index = 0
                         if matched:
                             total += 1
-                            matched = False
+                        matched = False
 
                 print(matched)
                 if not matched:
                     total += 1
                     print("total:", total)
 
-            for w in word:
-                if w not in term: 
-                    total += 1        
+            # for w in short:
+            #     if w not in long: 
+            #         total += 1        
 
             diff.append(total)
 
         print(diff)
         return self.words[diff.index(min(diff))]
+
+    # def find_most_similar(self, term):
+    #     diff = []
+    #     for word in self.words:
+    #         total = 0
+    #         index = 0
+
+    #         print("word:", word)
+    #         matched = False
+    #         for t in term:
+    #             # print("index:", index)
+    #             for j in range(index, len(word)):
+    #                 print("w:", word[j])
+
+    #                 if t == word[j]:
+    #                     print( t, j, word[j])
+
+    #                     index = j + 1
+    #                     matched = True
+    #                     break
+    #                 else: 
+    #                     index = 0
+    #                     if matched:
+    #                         total += 1
+    #                         matched = False
+
+    #             print(matched)
+    #             if not matched:
+    #                 total += 1
+    #                 print("total:", total)
+
+    #         for w in word:
+    #             if w not in term: 
+    #                 total += 1        
+
+    #         diff.append(total)
+
+    #     print(diff)
+    #     return self.words[diff.index(min(diff))]
 
 # class Dictionary:
 #     def __init__(self, words):
@@ -62,7 +108,7 @@ class Dictionary:
 #         return self.words[diff.index(min(diff))]
 
     
-# words = ['strawberry']
+# words = ['pineapple']
 
 words = ['cherry', 'peach', 'pineapple', 'melon', 'strawberry', 'raspberry', 'apple', 'coconut', 'banana']
 test_dict = Dictionary(words)
