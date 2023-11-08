@@ -1,31 +1,7 @@
 class Dictionary:
     def __init__(self, words):
         self.words = words
-    # def find_most_similar(self, term):
-    #     if term in self.words:
-    #         return term
         
-    #     diff = []
-    #     for word in self.words:
-    #         total = 0
-    #         for i in range(len(term)):
-    #             matched = False
-    #             for j in range(len(word)):
-    #                 matched = False
-    #                 if term[i] == word[j]:
-    #                     matched = True
-    #                     break
-    #             if matched:
-    #                 continue
-    #             else:
-    #                 print(word, i, term[i], j, word[j])
-    #                 total+=1
-
-    #         diff.append(total)
-    #         print(diff, diff.index(min(diff)))
-
-    #     return self.words[diff.index(min(diff))]
-
     def find_most_similar(self, term):
         diff = []
         for word in self.words:
@@ -56,6 +32,9 @@ class Dictionary:
                     total += 1
                     print("total:", total)
 
+            for w in word:
+                if w not in term: 
+                    total += 1        
 
             diff.append(total)
 
@@ -89,13 +68,13 @@ words = ['cherry', 'peach', 'pineapple', 'melon', 'strawberry', 'raspberry', 'ap
 test_dict = Dictionary(words)
 print(test_dict.find_most_similar('strawbery')) # 'strawberry'
 print(test_dict.find_most_similar('berry')) # 'cherry'
-# print(test_dict.find_most_similar('aple'))  # 'apple'
+print(test_dict.find_most_similar('aple'))  # 'apple'
 
-# things = Dictionary(['stars', 'mars', 'wars', 'codec', 'codewars'])
-# print(things.find_most_similar('coddwars')) # "codewars"
+things = Dictionary(['stars', 'mars', 'wars', 'codec', 'codewars'])
+print(things.find_most_similar('coddwars')) # "codewars"
 
-# languages = Dictionary(['brainfuck', 'cpp', 'php', 'java', 'javascript', 'python', 'ruby', 'coffeescript', 'c'])
-# print(languages.find_most_similar('heaven')) # "java"
+languages = Dictionary(['brainfuck', 'cpp', 'php', 'java', 'javascript', 'python', 'ruby', 'coffeescript', 'c'])
+print(languages.find_most_similar('heaven')) # "java"
 
-# rand = Dictionary(['osbednerciaai', 'xuwahveztwoor', 'hirldidcuzbyb', 'dyhxgviphoptak', 'loogviwcojxgvi', 'tklquxrnhfiggb', 'clxmqmiycvidiyr', 'eglanhfredaykxr', 'dihhiczkdwiofpr', 'karpscdigdvucfr', 'fxpvfhfrujjaifr', 'cwhyyzaorpvtnlfr', 'iqkyztorburjgiudi', 'xrgdgqfrldwk', 'emvquxrvvlvwvsi', 'psaysnhfrrqgxwik', 'jhjyasikwyufr', 'iroezmixmberfr', 'zqdrhpviqslik', 'kqijoorfkejdcxr', 'fgtrjakzlnaebxr', 'ppctybxgtleipb', 'npyrgrpbdfqhhncdi', 'xikoctmrhpvi', 'ljxzjjorwgb', 'jcocndjkyb', 'qifwqgdsijibor', 'ucxmdeudiycokfnb', 'hwzsemiqxjwfk', 'xffrkbdyjveb', 'qojfrlhufr', 'vkholxrvjwisrk', 'cpnqknjyviusknmte', 'znystgvifufptxr', 'tdvibqccxr', 'pdyjrkaylryr', 'afirbipbmkamjzw', 'hkldhadcxrjbmkmcdi', 'riyhpvimgaliuxr', 'hrwuhmtxxvmygb', 'sefsknopiffajor', 'pxyousorusjxxbt', 'lnjhrzfrosinb', 'nnsoamjkrzgldi', 'fxjskybblljqr', 'ajacizfrgxfumzpvi', 'mhmkakybpczjbb', 'ntwmwwmicnjvhtt', 'cfvruditwcxr', 'ggcvrtxrtnafw'])
-# print(rand.find_most_similar('rkacypviuburk')) # "zqdrhpviqslik"
+rand = Dictionary(['osbednerciaai', 'xuwahveztwoor', 'hirldidcuzbyb', 'dyhxgviphoptak', 'loogviwcojxgvi', 'tklquxrnhfiggb', 'clxmqmiycvidiyr', 'eglanhfredaykxr', 'dihhiczkdwiofpr', 'karpscdigdvucfr', 'fxpvfhfrujjaifr', 'cwhyyzaorpvtnlfr', 'iqkyztorburjgiudi', 'xrgdgqfrldwk', 'emvquxrvvlvwvsi', 'psaysnhfrrqgxwik', 'jhjyasikwyufr', 'iroezmixmberfr', 'zqdrhpviqslik', 'kqijoorfkejdcxr', 'fgtrjakzlnaebxr', 'ppctybxgtleipb', 'npyrgrpbdfqhhncdi', 'xikoctmrhpvi', 'ljxzjjorwgb', 'jcocndjkyb', 'qifwqgdsijibor', 'ucxmdeudiycokfnb', 'hwzsemiqxjwfk', 'xffrkbdyjveb', 'qojfrlhufr', 'vkholxrvjwisrk', 'cpnqknjyviusknmte', 'znystgvifufptxr', 'tdvibqccxr', 'pdyjrkaylryr', 'afirbipbmkamjzw', 'hkldhadcxrjbmkmcdi', 'riyhpvimgaliuxr', 'hrwuhmtxxvmygb', 'sefsknopiffajor', 'pxyousorusjxxbt', 'lnjhrzfrosinb', 'nnsoamjkrzgldi', 'fxjskybblljqr', 'ajacizfrgxfumzpvi', 'mhmkakybpczjbb', 'ntwmwwmicnjvhtt', 'cfvruditwcxr', 'ggcvrtxrtnafw'])
+print(rand.find_most_similar('rkacypviuburk')) # "zqdrhpviqslik"
