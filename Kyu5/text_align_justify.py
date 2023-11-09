@@ -1,51 +1,24 @@
 def justify(text, width):
     words = text.split(" ")
     count = 0
-    i = 0
     lines = []
     lineArr = []
-
-    # while (i < len(words)):
-    #     print(i, count, words[i])
-    #     count += (len(words[i]) + 1)
-    #     if count > width:
-    #         lines.append(lineArr)
-    #         lineArr = []
-    #         count = 0
-    #         continue
-        
-    #     lineArr.append(words[i])
-    #     i += 1
-
-    # for w in words:
-    #     count += len(w) + 1
-    #     print(count, w)
-    #     if count > width:
-    #         count = 0
-    #         lines.append(lineArr)
-    #         lineArr = []
-
-    #     lineArr.append(w)
-    #     print("lineArr:", lineArr)
-
-    #     if w == words[-1]: 
-    #         lines.append(lineArr)
+    lineLen = 0
 
     for w in words:
-        print(w, count)
-
         count += len(w) + 1 if w != words[-1] else len(w)
 
         if count <= width:
             lineArr.append(w)
-            # print("lineArr:", lineArr)
+            lineLen += len(w)
         else: 
             count = len(w) + 1
-            lines.append(lineArr)
+            lines.append({"words": lineArr, "length": lineLen})
             lineArr = [w]
+            lineLen = len(w)
 
         if w == words[-1]: 
-            lines.append(lineArr)
+            lines.append({"words": lineArr, "length": lineLen})
         
 
     print(lines)
