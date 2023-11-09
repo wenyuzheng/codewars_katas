@@ -1,114 +1,39 @@
+def levenshtein_distance(word1, word2):
+    len_word1, len_word2 = len(word1), len(word2)
+    dp = [[0] * (len_word2 + 1) for _ in range(len_word1 + 1)]
+
+    for i in range(len_word1 + 1):
+        dp[i][0] = i
+
+    for j in range(len_word2 + 1):
+        dp[0][j] = j
+
+    for i in range(1, len_word1 + 1):
+        for j in range(1, len_word2 + 1):
+            cost = 0 if word1[i - 1] == word2[j - 1] else 1
+            dp[i][j] = min(
+                dp[i - 1][j] + 1,      # Deletion
+                dp[i][j - 1] + 1,      # Insertion
+                dp[i - 1][j - 1] + cost  # Substitution
+            )
+
+    return dp[len_word1][len_word2]
+
 class Dictionary:
     def __init__(self, words):
         self.words = words
 
     def find_most_similar(self, term):
-        diff = []
+        min_distance = float('inf')
+        result = None
+
         for word in self.words:
-            total = 0
-            index = 0
+            distance = levenshtein_distance(term, word)
+            if distance < min_distance:
+                min_distance = distance
+                result = word
 
-            if len(term) > len(word):
-                long = term
-                short = word
-            else:
-                long = word
-                short = term
-
-            print("word:", short)
-            matched = False
-            for t in long:
-                # print("index:", index)
-                for j in range(index, len(short)):
-                    print("w:", short[j])
-
-                    if t == short[j]:
-                        print( t, j, short[j])
-
-                        index = j + 1
-                        matched = True
-                        break
-                    else: 
-                        index = 0
-                        if matched:
-                            total += 1
-                        matched = False
-
-                print(matched)
-                if not matched:
-                    total += 1
-                    print("total:", total)
-
-            # for w in short:
-            #     if w not in long: 
-            #         total += 1        
-
-            diff.append(total)
-
-        print(diff)
-        return self.words[diff.index(min(diff))]
-
-    # def find_most_similar(self, term):
-    #     diff = []
-    #     for word in self.words:
-    #         total = 0
-    #         index = 0
-
-    #         print("word:", word)
-    #         matched = False
-    #         for t in term:
-    #             # print("index:", index)
-    #             for j in range(index, len(word)):
-    #                 print("w:", word[j])
-
-    #                 if t == word[j]:
-    #                     print( t, j, word[j])
-
-    #                     index = j + 1
-    #                     matched = True
-    #                     break
-    #                 else: 
-    #                     index = 0
-    #                     if matched:
-    #                         total += 1
-    #                         matched = False
-
-    #             print(matched)
-    #             if not matched:
-    #                 total += 1
-    #                 print("total:", total)
-
-    #         for w in word:
-    #             if w not in term: 
-    #                 total += 1        
-
-    #         diff.append(total)
-
-    #     print(diff)
-    #     return self.words[diff.index(min(diff))]
-
-# class Dictionary:
-#     def __init__(self, words):
-#         self.words = words
-#     def find_most_similar(self, term):
-#         diff = []
-#         for word in self.words:
-#             total = 0
-#             for t in term:
-#                 if t not in word: 
-#                     total += 1
-            
-#             for w in word:
-#                 if w not in term: 
-#                     total += 1
-
-#             diff.append(total)
-
-#         print(diff)
-#         return self.words[diff.index(min(diff))]
-
-    
-# words = ['pineapple']
+        return result
 
 words = ['cherry', 'peach', 'pineapple', 'melon', 'strawberry', 'raspberry', 'apple', 'coconut', 'banana']
 test_dict = Dictionary(words)
