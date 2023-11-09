@@ -21,6 +21,26 @@ def justify(text, width):
             lines.append({"words": lineArr, "length": lineLen})
         
 
-    print(lines)
+    result = ""
+    for line in lines:
+        words = line["words"]
+
+        if line == lines[-1]:
+            result += "".join(words)
+            break
+
+        spacesNum = width - line["length"]
+        i = 0
+
+        while spacesNum > 0:
+            if i >= len(words)-1:
+                i = 0
+            words[i] += " "
+            spacesNum -= 1
+            i += 1
+
+        result += "".join(words) + "\n"
+
+    return result
 
 print(justify('123 45 6', 7)) # '123  45\n6'
