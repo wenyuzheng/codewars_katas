@@ -1,9 +1,16 @@
+// const makeLooper = (str) => {
+//   let pointer = -1;
+//   return () => {
+//     pointer++;
+//     if (pointer === str.length) pointer = 0;
+//     return str[pointer];
+//   };
+// };
+
 const makeLooper = (str) => {
-  let pointer = -1;
+  let pointer = 0;
   return () => {
-    pointer++;
-    if (pointer === str.length) pointer = 0;
-    return str[pointer];
+    return str[pointer++ % str.length];
   };
 };
 
