@@ -4,24 +4,17 @@ const pickPeaks = (arr) => {
   const pos = [];
   const peaks = [];
 
-  let max = arr[1];
   let maxReached = false;
 
-  for (let i = 2; i < arr.length; i++) {
-    if (maxReached) {
-      if (max < arr[i]) {
-        maxReached = false;
-      }
-      max = arr[i];
-    } else {
-      if (max < arr[i]) {
-        max = arr[i];
-      } else {
-        // console.log(max, arr[i]);
-        pos.push(i - 1);
-        peaks.push(max);
-        maxReached = true;
-      }
+  for (let i = 1; i < arr.length - 1; i++) {
+    if (!maxReached && arr[i] >= arr[i + 1]) {
+      pos.push(i);
+      peaks.push(arr[i]);
+      maxReached = true;
+    }
+
+    if (maxReached && arr[i] < arr[i + 1]) {
+      maxReached = false;
     }
   }
 
