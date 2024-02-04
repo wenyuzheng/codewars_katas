@@ -18,11 +18,15 @@ const pickPeaks = (arr) => {
         } else if (arr[tempMaxPos] < arr[i + 1]) {
           tempMaxPos = -1;
         }
-      } else if (arr[i] > arr[i + 1]) {
+      } else if (arr[i - 1] < arr[i] && arr[i] > arr[i + 1]) {
         pos.push(i);
         peaks.push(arr[i]);
         maxReached = true;
-      } else if (tempMaxPos === -1 && arr[i] === arr[i + 1]) {
+      } else if (
+        arr[i - 1] < arr[i] &&
+        tempMaxPos === -1 &&
+        arr[i] === arr[i + 1]
+      ) {
         tempMaxPos = i;
       }
     }

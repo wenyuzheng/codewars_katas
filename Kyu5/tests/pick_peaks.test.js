@@ -42,5 +42,9 @@ describe("Sample tests", function () {
     );
     assert.deepEqual(pickPeaks([]), { pos: [], peaks: [] });
     assert.deepEqual(pickPeaks([1, 1, 1, 1]), { pos: [], peaks: [] });
+    assert.deepEqual(pickPeaks([14, 12, -1, 1, 4, 10, -2, 6]), {
+      pos: [5],
+      peaks: [10],
+    });
   });
 });
