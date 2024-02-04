@@ -2,8 +2,7 @@ const chai = require("chai");
 const assert = chai.assert;
 chai.config.truncateThreshold = 0;
 
-// import pickPeaks from "../pick_peaks";
-const pickPeaks = require("../pick_peaks").pickPeaks;
+const pickPeaks = require("../pick_peaks");
 
 describe("Sample tests", function () {
   it("Tests", function () {
