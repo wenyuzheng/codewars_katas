@@ -6,23 +6,19 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function (nums1, m, nums2, n) {
-  let pointer1 = 0;
-  let pointer2 = 0;
+  let p1 = m - 1;
+  let p2 = n - 1;
+  let k = m + n - 1;
 
-  const slicedNums1 = nums1.slice(0, m);
-
-  while (pointer2 < n && pointer1 < m) {
-    if (nums1[pointer1] > nums2[pointer2]) {
-      slicedNums1.splice(pointer1, 0, nums2[pointer2]);
-      pointer2++;
+  while (p2 >= 0) {
+    if (nums1[p1] > nums2[p2] && p1 >= 0) {
+      nums1[k--] = nums1[p1--];
     } else {
-      pointer1++;
+      nums1[k--] = nums2[p2--];
     }
   }
 
-  if (pointer2 < n) slicedNums1.push(...nums2.slice(pointer2, n));
-
-  return slicedNums1;
+  return nums1;
 };
 
 module.exports = merge;
